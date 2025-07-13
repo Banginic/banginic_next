@@ -1,0 +1,20 @@
+export const jobTable = pgTable("jobs", {
+  id: serial("id").primaryKey(),
+  title: varchar("title", { length: 100 }).notNull(),
+  location: varchar("location", { length: 100 }).notNull(),
+  description: varchar("description", { length: 500 }).notNull(),
+  postedDate: timestamp("posted_date").notNull().defaultNow(),
+  latestDate: date("latest_date").notNull(),
+});
+
+export const newEmployeeTable = pgTable("new_employee", {
+  id: serial("id").primaryKey(),
+  name: varchar("name", { length: 25 }).notNull(),
+  email: varchar("email", { length: 30 }).notNull().unique(),
+  phone: varchar("phone", { length: 15 }).notNull(),
+  motivation: varchar("motivation", { length: 500 }).notNull(),
+  job: varchar("job", { length: 50 }).notNull(),
+//   jobId: integer("job_id").notNull().references(() => jobTable.id),
+  resume: varchar("resume", { length: 250 }).notNull(),
+  createdAt: timestamp("created_at").notNull().defaultNow(),
+});

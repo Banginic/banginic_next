@@ -1,0 +1,2 @@
+ALTER TABLE "new_employee" ADD COLUMN "job_id" integer NOT NULL;--> statement-breakpoint
+ALTER TABLE "new_employee" ADD CONSTRAINT "new_employee_job_id_jobs_id_fk" FOREIGN KEY ("job_id") REFERENCES "public"."jobs"("id") ON DELETE no action ON UPDATE no action;
