@@ -1,0 +1,10 @@
+
+
+.theme_icon{
+  animation: rotate-icon 3s ;
+}
+@keyframes rotate-icon {
+  to {
+    rotate: 360deg;
+  }
+}

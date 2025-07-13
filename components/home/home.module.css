@@ -1,0 +1,111 @@
+
+
+.title_one{
+  padding-block: 0.9rem;
+  background-image: var(--gradient);
+  background-clip: text;
+  color: transparent;
+  background-size: 400%;
+  animation: title-one 20s infinite alternate;
+ }
+ .title_two{
+  padding-block: 0.9rem;
+  background-image: var(--gradient);
+  background-clip: text;
+  color: transparent;
+  background-size: 400%;
+  animation: title-two 20s infinite alternate;
+ }
+ @keyframes title-one {
+  0%{
+   background-position: left;
+  }
+  100%{
+  background-position: right;
+  }
+}
+ @keyframes title-two {
+  0%{
+   background-position: right;
+  }
+  100%{
+  background-position: left;
+  }
+ 
+  
+ }
+ .translate > h1{
+ animation: trans-left 1.2s ease;
+ }
+ .myTitle.translate:nth-child(2){
+  animation: trans-right 1.2s ease;
+ }
+ @keyframes trans-left {
+  from{
+    opacity: 0.8;
+    scale: 0.3;
+    translate: -30rem 0;
+  }
+ }
+ /* @keyframes trans-right {
+  from{
+    opacity: 0.8;
+    scale: 0.3;
+    translate: 2rem 0;
+  }
+ } */
+  .translatex_lines{
+    position: absolute;
+    top: 0;
+    left: 0;
+    animation: translatex 10800ms alternate infinite;
+  }
+  @keyframes translatex {
+    from{
+      top: 0;
+      left: 0;
+     
+    }
+    to{
+      top: 500px;
+      left: 20px
+      
+    }
+    
+  }
+  .translatexy_lines{
+    position: absolute;
+    top: 0;
+    left: 10px;
+    animation: translatexy 10800ms alternate infinite;
+  }
+  @keyframes translatexy {
+    from{
+      top: 500px;
+      left: 15px;
+ 
+    }
+    to{
+      top: 0;
+      left: 0;
+    }
+    
+  }
+  .translatey_lines{
+    position: absolute;
+    top: 0;
+    right: 20px;
+    animation: translatey 10800ms alternate infinite;
+  }
+  @keyframes translatey {
+    from{
+      top: 0;
+      right: 10;
+ 
+    }
+    to{
+      top: -500px;
+      right: 500px;
+    }
+    
+  }
