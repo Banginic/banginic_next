@@ -1,9 +1,9 @@
-import { Link } from "react-router-dom";
+import Link from "next/link";
 
 function CTAHero() {
   return (
     <div className="flex z-50 justify-start md:items-center   gap-5 mt-3 text-[var(--primary-color)  w-full ">
-      <Link to="/contact-us">
+      <Link href="/contact-us">
         <button
           className="text-sm font-medium flex gap-2 justify-center items-center py-3 lg:text-[17px] cursor-pointer px-6 hover:bg-accent-tone 
       rounded-lg bg-accent text-white montserrat
@@ -12,7 +12,7 @@ function CTAHero() {
           Get in touch
         </button>
       </Link>
-      <Link to="/works">
+      <Link href="/projects">
         <button
           className="text-sm flex montserrat gap-2 justify-center items-center p-3 px-6 lg:text-[17px] rounded-lg
         shadow-md trans bg-gray-950 dark:bg-gray-800/90 text-white cursor-pointer hover:bg-black/80  trans"

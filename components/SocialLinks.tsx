@@ -6,7 +6,7 @@ import {
   twitter,
   githup,
   person,
-} from "../assets/assets";
+} from "@/assets/photos";
 interface Props {
   githup?: string;
   facebook?: string;
@@ -15,18 +15,18 @@ interface Props {
   whatsApp?: string;
   instagram?: string;
 }
-
+import Image from "next/image";
 function SocialLinks(props: { links: Props }) {
   return (
     <div className="flex items-center gap-1">
       {props.links?.githup && (
         <a href={props.links?.githup} target="blank" className="cursor-pointer">
-          <img
+          <Image
             className="size-7 md:size-6 md:hover:scale-110 hover:opacity-90 trans bg-w"
             src={githup}
             loading="lazy"
             aria-label="Social link image"
-            alt={person}
+            alt={'./placeholder.png'}
           />
         </a>
       )}
@@ -36,12 +36,12 @@ function SocialLinks(props: { links: Props }) {
           target="blank"
           className="cursor-pointer dark:bg-gray-900 rounded-ful"
         >
-          <img
+          <Image
             className="size-7 md:size-6 md:hover:scale-110 hover:opacity-90 trans"
             src={linkedin}
-            loading="lazy"
+          width={30}
             aria-label="Social link image"
-            alt={person}
+            alt={'./placeholder.png'}
           />
         </a>
       )}
@@ -51,12 +51,12 @@ function SocialLinks(props: { links: Props }) {
           target="blank"
           className="cursor-pointer dark:bg-gray-900"
         >
-          <img
+          <Image
             className="size-7 md:size-6 md:hover:scale-110 hover:opacity-90  trans"
             src={facebook}
-            loading="lazy"
+            width={30}
             aria-label="Social link image"
-            alt={person}
+            alt={'./placeholder.png'}
           />
         </a>
       )}
@@ -66,12 +66,12 @@ function SocialLinks(props: { links: Props }) {
           target="blank"
           className="cursor-pointer dark:bg-gray-900"
         >
-          <img
+          <Image
             className="size-7 md:size-6 md:hover:scale-110 hover:opacity-90 trans"
             src={instagram}
-            loading="lazy"
+           width={30}
             aria-label="Social link image"
-            alt={person}
+            alt={'./placeholder.png'}
           />
         </a>
       )}
@@ -81,12 +81,12 @@ function SocialLinks(props: { links: Props }) {
           target="blank"
           className="cursor-pointer dark:bg-gray-900"
         >
-          <img
+          <Image
             className="size-7 md:size-6 md:hover:scale-110 hover:opacity-90 trans"
             src={whatsApp_logo}
             loading="lazy"
             aria-label="Social link image"
-            alt={person}
+            alt={'./placeholder.png'}
           />
         </a>
       )}
@@ -96,12 +96,12 @@ function SocialLinks(props: { links: Props }) {
           target="blank"
           className="cursor-pointer dark:bg-gray-900"
         >
-          <img
+          <Image
             className="size-7 md:size-6 md:hover:scale-110 hover:opacity-90 trans"
             src={twitter}
             loading="lazy"
             aria-label="Social link image"
-            alt={person}
+            alt={'./placeholder.png'}
           />
         </a>
       )}

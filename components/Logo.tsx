@@ -1,22 +1,18 @@
-import { LazyLoadImage } from "react-lazy-load-image-component";
-import "react-lazy-load-image-component/src/effects/blur.css";
-import { placeholdeImage } from "../assets/assets";
+import { logo } from "@/assets/photos";
+import Image from "next/image";
+
+
 type Props = {
   textSize: string;
-  logoSize: string;
+  logoSize: number;
 };
 function Logo(props: Props) {
   return (
     <div className="flex items-center gap-2">
-      <LazyLoadImage
-        className={props.logoSize}
-        alt={placeholdeImage}
-        effect="blur"
-        aria-label={`Logo photo`}
-        wrapperProps={{
-          style: { transition: "1s" },
-        }}
-        src="/banginic_logo.png"
+      <Image
+        width={props.logoSize}
+        alt={"./placeholder.png"}
+        src={logo}
       />
       <p className={`${props.textSize} montserrat  `}>Banginic</p>
     </div>

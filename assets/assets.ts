@@ -88,6 +88,14 @@ export const sidebarLinks = [
   {name:"Assets", pathname: "/assets", icon:open_source},
   {name:"Careers", pathname: "/careers", icon:jobs}
 ]
+export const mainNavlinks = [
+  {name:"Services", pathname: "/services", icon:services_photo},
+  {name:"Projects", pathname: "/works/all", icon:projects_photo},
+  {name:"About", pathname: "/about-us", icon:about_us},
+  {name:"Contact", pathname: "/contact-us", icon:contact_us},
+  {name:"Classes", pathname: "/learning", icon:tutorial},
+  {name:"Assets", pathname: "/assets", icon:open_source},
+]
 export  const servicesDetails = [
     {icon: "./assets/icons/branding.png", title: "Branding ", details: "We work with businesses to develop a unique identity that resonates with your audience, sets you apart from competitors, and drives lasting success. From strategy to design, we help shape every aspect of your brand to ensure it tells a compelling, cohesive story."},
     {icon: "./assets/icons/uiux design.png", title: "UI/UX Design", details: ` Our design process focuses on understanding your audience’s needs, solving real problems, and delivering intuitive interfaces that are both visually appealing and easy to navigate.`},

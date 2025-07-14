@@ -1,15 +1,13 @@
+'use client'
 import { useContext, useState } from "react";
-import { happyCustomer, person } from "../../assets/assets";
-import { motion } from "framer-motion";
+import { happyCustomer, person } from "@/assets/data";
 import { AppContext } from "../../context/AppProvider";
 import myFetch from "../../libs/myFetch";
 import Loading from "../Loading";
 import StarRating from "../StarRating";
 import { useQuery } from "@tanstack/react-query";
-import type { TestimonialsTypes } from "../../models/types";
-import { LazyLoadImage } from "react-lazy-load-image-component";
-import "react-lazy-load-image-component/src/effects/blur.css";
-import { placeholdeImage } from "../../assets/assets";
+// import type { TestimonialsTypes } from "../../models/types";
+import Image from "next/image";
 
 function Testimonials() {
   const [index, setIndex] = useState(0);
@@ -69,53 +67,25 @@ function Testimonials() {
 
   return (
     <div className=" p-4 py-8">
-      <motion.h4
-        className={`mano text-center pb-10 mt-10 heading3 lg:pb-10   `}
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, amount: 0.2 }}
-        transition={{ duration: 0.6, delay: 0.5 }}
-      >
+      <h4 className={`mano text-center pb-10 mt-10 heading3 lg:pb-10   `}>
         WHY PEOPLE LOVE US
-      </motion.h4>
+      </h4>
       <div className="  md:flex flex-row gap-4 justify-around">
-        <motion.div
-          initial={{ opacity: 0, y: -20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.2 }}
-          transition={{ duration: 0.6, delay: 0.5 }}
-          className=" md:w-[300px] lg:w-1/3 h-[250px] "
-        >
-          <LazyLoadImage
+        <div className=" md:w-[300px] lg:w-1/3 h-[250px] ">
+          <Image
             className="size-full rounded shadow-xl"
-            alt={placeholdeImage}
-            effect="blur"
-            aria-label="happy customers image"
-            loading="lazy"
-            wrapperProps={{
-              style: { transition: "1s" },
-            }}
+            width={300}
             src={happyCustomer}
+            alt="./placeholder.png"
           />
-        </motion.div>
-        <motion.div
-          className="relative rounded md:w-1/2 mt-24 md:mt-0 "
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.2 }}
-          transition={{ duration: 0.6, delay: 0.5 }}
-        >
+        </div>
+        <div className="relative rounded md:w-1/2 mt-24 md:mt-0 ">
           <article className="bg-white backdrop:blur-sm shadow-lg  mx-auto rounded-lg  relative p-5 md:w-xs lg:w-sm min-h-110">
             <div className="flex items-center justify-between p-3">
-              <LazyLoadImage
+              <Image
                 className="size-[64px] lg:size-[80px] bg-blue-300 rounded-full shadow"
-                alt={placeholdeImage}
-                effect="blur"
-                aria-label="happy customers image"
-                loading="lazy"
-                wrapperProps={{
-                  style: { transition: "1s" }
-                }}
+                alt={'./placeholder.png'}
+                width={200}
                 src={current?.photo || person}
               />
               <StarRating rating={current?.rating} />
@@ -168,7 +138,7 @@ function Testimonials() {
               <path d="M400-80 0-480l400-400 71 71-329 329 329 329-71 71Z" />
             </svg>
           </span>
-        </motion.div>
+        </div>
       </div>
     </div>
   );

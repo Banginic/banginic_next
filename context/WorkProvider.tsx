@@ -1,3 +1,4 @@
+'use client'
 import React, { createContext, useState } from "react";
 import type { WorkContextType } from "../models/projectTypes";
 
@@ -9,7 +10,7 @@ function WorkProvider({
   children,
 }: {
   children: React.ReactNode;
-}): JSX.Element | null {
+}) {
   const [showDetails, setShowDetails] = useState(true);
   const [renderDetails, setRenderDetails] = useState<boolean>(false);
 

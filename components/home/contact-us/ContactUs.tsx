@@ -1,7 +1,8 @@
+'use client'
 import Map from "./Map";
-import { Link } from 'react-router-dom'
+import Link from "next/link";
 
-import { ContactCard } from "../../../conponents/exportComp";
+import { ContactCard } from "@/components/exportComp";
 
 function ContactUs() {
   return (
@@ -17,7 +18,7 @@ function ContactUs() {
           <Map />
         </div>
       </div>
-      <Link to='/contact-us' className="grid place-items-center">
+      <Link href='/contact-us' className="grid place-items-center">
         <button className=" border-2  font-bold montserrat px-8 mt-8 cursor-pointer hover:scale-105 trans py-3 rounded-lg">
           Contact Us
         </button>

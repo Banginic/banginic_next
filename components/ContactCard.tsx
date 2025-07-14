@@ -1,8 +1,16 @@
-import { whatsApp_logo, contactCard, location, call, email} from "../assets/assets";
+import {
+  whatsApp_logo,
+  contactCard,
+  location,
+  call,
+  email,
+} from "@/assets/photos";
+import Image from "next/image";
 
 function ContactCard() {
-  const phoneNumber = import.meta.env.VITE_PHONE_NUMBER;
-  const emailAddress = import.meta.env.VITE_EMAIL_ADDRESS;
+  const phoneNumber = process.env.PHONE_NUMBER!;
+  const emailAddress = process.env.EMAIL_ADDRESS!;
+  const whatsAppNumber = process.env.WHATSAPP_NUMBER;
 
   const emailLink = `mailto:${emailAddress}?subject=${encodeURIComponent(
     contactCard.email.emailSubject
@@ -20,8 +28,6 @@ function ContactCard() {
     },
   ];
   function sendWhatsAppMessage() {
-    const whatsAppNumber = import.meta.env.VITE_WHATSAPP_NUMBER;
-
     const url = `https://wa.me/${whatsAppNumber}?text=${encodeURIComponent(
       contactCard.whatsApp.whatsAppBody
     )}`;
@@ -35,7 +41,7 @@ function ContactCard() {
         onClick={sendWhatsAppMessage}
       >
         {" "}
-        <img src={whatsApp_logo} width={30} alt="" />
+        <Image src={whatsApp_logo} width={30} alt="./placeholder.png" />
         WhatsApp
       </button>
       <a
@@ -44,7 +50,7 @@ function ContactCard() {
         className=" px-3 text-start cursor-pointer text-pink-100 text-[16px] flex items-center hover:bg-gray-200/10  trans rounded w-[300px] mb-1 gap-4 hover:underline"
       >
         {" "}
-       <img src={call} width={30} alt="" />
+        <Image src={call} width={30} alt="./placeholder.png" />
         +237 672 640 914
       </a>
       <a
@@ -52,20 +58,24 @@ function ContactCard() {
         title="click to call"
         className=" px-3 text-start cursor-pointer text-pink-100 text-[16px] flex items-center hover:bg-gray-200/10  trans rounded w-[300px] gap-4.5 mb-1.5 hover:underline"
       >
-        <img src={email} width={30} alt="" />
+        <Image src={email} width={30} alt="./placeholder.png" />
         {emailAddress}
+        <p>baginic.007@gmail.com</p>
       </a>
       {contactDetails.map((contact, index) => {
         return (
-          <div key={index} className="flex px-3 gap-4 hover:bg-gray-200/10 trans rounded w-[350px]">
-            <img src={contact.icon} width={30} alt="" />
+          <div
+            key={index}
+            className="flex px-3 gap-4 hover:bg-gray-200/10 trans rounded w-[350px]"
+          >
+            <Image src={contact.icon} width={30}  alt='./placeholder.png' />
             <div
               className="cursor-pointer lg:hover:underline w-full trans "
               title={`Click to copy ${contact.details}`}
               onClick={() => navigator.clipboard.writeText(contact.details)}
             >
               <p className={` sr-only paragraph1`}>{contact.type}</p>
-              <p className="text-[16px] text-pink-100  ">{contact.details}</p>
+              <p className="text-[16px] text-pink-100 text-nowrap ">{contact.details}</p>
             </div>
           </div>
         );

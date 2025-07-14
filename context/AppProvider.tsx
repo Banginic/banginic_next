@@ -1,3 +1,4 @@
+"use client";
 import React, {
   createContext,
   useCallback,
@@ -6,24 +7,26 @@ import React, {
   useState,
 } from "react";
 import { WorkContext } from "./WorkProvider";
-import { useNavigate } from "react-router-dom";
-import type { NavigateFunction } from "react-router-dom";
+import { useRouter } from "next/navigation";
 
 export interface AppContextType {
   setShowSidebar: React.Dispatch<React.SetStateAction<boolean>>;
   toggleSideBar(): void;
   removeAllDisplay(): void;
   theme: "light" | "dark" | string;
-  setTheme: React.Dispatch<React.SetStateAction< 'light' | 'dark' | string>>;
+  setTheme: React.Dispatch<React.SetStateAction<"light" | "dark" | string>>;
   // toggleTheme(): void;
   showNavbar: boolean;
   showSidebar: boolean;
-  baseUrl: string;
   user: string | null;
   setUser: React.Dispatch<React.SetStateAction<string | null>>;
-  navigate: NavigateFunction;
+  router: ReturnType<typeof useRouter>;
   lang: string;
   setLang: React.Dispatch<React.SetStateAction<string>>;
+  mainSidebar: boolean;
+  setMainSidebar: React.Dispatch<React.SetStateAction<boolean>>;
+  adminSidebar: boolean;
+  setAdminSidebar: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 export const AppContext = createContext<AppContextType | undefined>(undefined);
@@ -33,16 +36,15 @@ type PropsType = {
 };
 
 function AppProvider({ children }: PropsType) {
-  const navigate = useNavigate();
-
-  // const baseUrl = 'http://localhost:8080'
-  const baseUrl = import.meta.env.VITE_BASE_URL;
+  const router = useRouter();
 
   const workContext = useContext(WorkContext);
   const [user, setUser] = useState<string | null>(
     () => localStorage.getItem("user") || null
   );
   const [showNavbar, setShowNavbar] = useState(false);
+  const [mainSidebar, setMainSidebar] = useState(false);
+  const [adminSidebar, setAdminSidebar] = useState(false);
   const [toggleNavbar, setToggleNavbar] = useState(false);
   const [showSidebar, setShowSidebar] = useState<boolean>(false);
   const [theme, setTheme] = useState<"dark" | "light" | string>("");
@@ -123,17 +125,19 @@ function AppProvider({ children }: PropsType) {
     setShowSidebar,
     toggleSideBar,
     removeAllDisplay,
-    theme, setTheme,
+    theme,
+    setTheme,
     // toggleTheme,
     showNavbar,
-    baseUrl,
     user,
     setUser,
-    navigate,
+    router,
     token,
     setToken,
     lang,
     setLang,
+    mainSidebar, setMainSidebar,
+    adminSidebar, setAdminSidebar
   };
   return <AppContext.Provider value={values}>{children}</AppContext.Provider>;
 }

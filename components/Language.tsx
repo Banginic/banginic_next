@@ -1,7 +1,8 @@
+"use client";
 import { AppContext } from "../context/AppProvider";
-import  { useContext } from "react";
-import { france_flag, placeholdeImage, uk_flag } from "../assets/photos";
-
+import { useContext } from "react";
+import { france_flag, uk_flag } from "@/assets/photos";
+import Image from "next/image";
 
 function Language() {
   const appContext = useContext(AppContext);
@@ -12,10 +13,10 @@ function Language() {
         title="Change language"
         className="flex items-center gap-1 cursor-pointer  "
       >
-        <img
+        <Image
           src={appContext?.lang === "EN" ? uk_flag : france_flag}
           width={20}
-          alt={placeholdeImage}
+          alt={"./placeholder.png"}
         />
         <span>{appContext?.lang}</span>
       </button>
@@ -27,7 +28,7 @@ function Language() {
             appContext?.lang === "EN" && "hidden"
           } cursor-pointer w-full `}
         >
-          <img src={uk_flag} width={20} alt={placeholdeImage} />
+          <Image src={uk_flag} width={20} alt={"./placeholder.png"} />
           <span>EN</span>
         </button>
         <button
@@ -37,7 +38,7 @@ function Language() {
             appContext?.lang === "FR" && "hidden"
           }  w-full`}
         >
-          <img src={france_flag} width={20} alt={placeholdeImage} />
+          <Image src={france_flag} width={20} alt={"./placeholder.png"} />
           <span>FR</span>
         </button>
       </div>

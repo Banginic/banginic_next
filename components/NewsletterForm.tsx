@@ -1,10 +1,11 @@
+'use client'
 import axios from "axios";
 import { useState } from "react";
 import { toast } from "react-toastify";
 import type { FormEvent } from "react";
 
 function NewsletterForm() {
-  const baseUrl = import.meta.env.VITE_BASE_URL;
+  const baseUrl = ''
   const [isLoading, setLoading] = useState(false);
   const [newSignee, setNewSignee] = useState({
     fullName: "",

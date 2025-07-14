@@ -1,44 +1,55 @@
-import { useContext } from "react";
-import { NavLink } from "react-router-dom";
+import { useContext, Dispatch, SetStateAction } from "react";
+import type { NavlinkTypes } from "@/models/types";
+import { User } from "@/components/exportComp";
+import { AppContext } from "@/context/AppProvider";
+import Link from "next/link";
+import Image from "next/image";
+import { close_menu } from "@/assets/photos";
 
-import { sidebarLinks } from '../assets/assets.ts'
-import{ User} from "../conponents/exportComp.ts";
-import { AppContext } from "../context/AppProvider.tsx";
-
-function Sidebar() {
- const appContext = useContext(AppContext)
+function Sidebar({
+  isSidebarOpen,
+  setSidebar,
+  navlinks,
+}: {
+  setSidebar: Dispatch<SetStateAction<boolean>>;
+  navlinks: NavlinkTypes[];
+  isSidebarOpen: boolean;
+}) {
+  const appContext = useContext(AppContext);
 
   return (
-    <section
-      className="w-full bg-black/50 backdrop-blur-sm h-screen p-6 relative"
+    <aside
+      className={`${
+        isSidebarOpen ? "fixed" : "hidden"
+      } lg:hidden  right-0 left-0 top-0 min-h-105 z-50 bg-black/50 backdrop-blur-sm  p-6 `}
       onClick={() => appContext?.setShowSidebar(false)}
     >
       <User />
+      <button
+        onClick={() => setSidebar(false)}
+        className="absolute top-8 right-4 cursor-pointer hover:bg-white/10 trans rounded p-1"
+      >
+        <Image src={close_menu} alt="./placeholder.png" width={40} />
+      </button>
       <ul className="flex md:hidden justify-between gap-5 flex-col my-12 text-center">
-        {sidebarLinks.map((link, index) => {
+        {navlinks.map((link, index) => {
           return (
-            <NavLink
-              to={link.pathname}
+            <Link
+              href={link.href}
               key={index}
-              
+              onClick={() => setSidebar(false)}
               className={`w-[80%]  trans text-center  
             hover:bg-accent/10 hover:dark:bg-accent/10 trans rounded `}
             >
               <div className="flex items-center justify-start px-4 gap-5 py-2 ">
-                <img
-                  src={link.icon}
-                  alt={link.icon}
-                  width={35}
-                  loading="lazy"
-                  
-                />
-                <p className=" text-lg text-pink-100">{link.name}</p>
+                <Image src={link.icon} alt={"./placeholder.png"} width={35} />
+                <p className=" text-lg text-pink-100">{link.label}</p>
               </div>
-            </NavLink>
+            </Link>
           );
         })}
       </ul>
-    </section>
+    </aside>
   );
 }
 

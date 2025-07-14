@@ -1,5 +1,3 @@
-import { motion } from "framer-motion";
-
 function Counter() {
   const counter = [
     { total: "07", para1: "Years of", para2: "Experience" },
@@ -9,13 +7,7 @@ function Counter() {
   ];
 
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, amount: 0.2 }}
-      transition={{ duration: 0.6, delay: 0.3 }}
-      className="z-10  mt-10 md:mt-[40px] lg:mt-[85px] gap-4 grid grid-cols-2 lg:grid-cols-4 shadow-lg rounded-lg p-5 md:p-10 lg:p-14"
-    >
+    <div className="z-10  mt-10 md:mt-[40px] lg:mt-[85px] gap-4 grid grid-cols-2 lg:grid-cols-4 shadow-lg rounded-lg p-5 md:p-10 lg:p-14">
       {counter.map((count, index) => {
         return (
           <div
@@ -30,7 +22,7 @@ function Counter() {
           </div>
         );
       })}
-    </motion.div>
+    </div>
   );
 }
 

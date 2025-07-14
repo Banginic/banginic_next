@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import Link from "next/link";
 import { socialMediaLinks, footLinks, metaData } from "../assets/assets";
 import { SocialLinks, Logo, NewsletterForm } from "./exportComp";
 
@@ -9,13 +9,13 @@ function Footer() {
     className=" rounded-t-xl lg:w-[95%] mx-auto  bg-black px-5 pt-10 boder-t-2">
       <div className="flex flex-col md:flex-row gap-10 md:justify-around pb-10">
         <div className="flex flex-col gap-5  ">
-          <Logo textSize="font-bold text-3xl lg:text-4xl" logoSize="size-10 " />
+          <Logo textSize="font-bold text-3xl lg:text-4xl" logoSize={20} />
           <SocialLinks links={socialMediaLinks} />
           <article className="my-5 flex flex-col gap-2 ">
             {footLinks.map((link, index) => (
               <Link
                 key={index}
-                to={link.pathname}
+                href={link.pathname}
                 className="opacity-80 hover:underline text-pink-100"
               >
                 {link.name}

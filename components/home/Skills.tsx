@@ -1,46 +1,40 @@
-import { motion } from "framer-motion";
-import { LazyLoadImage } from "react-lazy-load-image-component";
-import "react-lazy-load-image-component/src/effects/blur.css";
-import { placeholdeImage } from "../../assets/assets";
+import Image from "next/image";
+import figma from '@/public/dev_icons/figma_p.png'
+import wordpress from '@/public/dev_icons/wordpress_p.png'
+import react from '@/public/dev_icons/react_p.png'
+import mySql from '@/public/dev_icons/mySql_p.png'
+import dart from '@/public/dev_icons/dart_p.png'
+import nextjs from '@/public/dev_icons/figma_p.png'
+import git from '@/public/dev_icons/git_p.png'
+import mongodb from '@/public/dev_icons/mongodb_p.png'
+import nodejs from '@/public/dev_icons/nodejs_p.png'
+import python from '@/public/dev_icons/python_p.png'
 
 function Skills() {
   const frameworks = [
-    { name: "Figma", percent: "92%", icon: "/dev_icons/figma_p.png" },
-    { name: "Sketch", percent: "70%", icon: "Percent" },
-    { name: "WordPress", percent: "99%", icon: "/dev_icons/wordpress_p.png" },
-    { name: "React", percent: "97%", icon: "/dev_icons/react_p.png" },
-    { name: "TypeScript", percent: "95%", icon: "/dev_icons/mySql_p.png" },
-    { name: "Dart", percent: "91%", icon: "/dev_icons/dart_p.png" },
-    { name: "Nextjs", percent: "90%", icon: "/dev_icons/nextjs_p.png" },
-    { name: "Git", percent: "96%", icon: "/dev_icons/git_p.png" },
-    { name: "MongoDb", percent: "88%", icon: "/dev_icons/mongodb_p.png" },
-    { name: "Nodejs", percent: "91%", icon: "/dev_icons/nodejs_p.png" },
-    { name: "Python", percent: "95%", icon: "/dev_icons/python_p.png" },
+    { name: "Figma", percent: "92%", icon: figma},
+    { name: "WordPress", percent: "99%", icon: wordpress },
+    { name: "React", percent: "97%", icon: react },
+    { name: "TypeScript", percent: "95%", icon: mySql },
+    { name: "Dart", percent: "91%", icon: dart },
+    { name: "Nextjs", percent: "90%", icon: nextjs },
+    { name: "Git", percent: "96%", icon: git },
+    { name: "MongoDb", percent: "88%", icon: mongodb },
+    { name: "Nodejs", percent: "91%", icon: nodejs },
+    { name: "Python", percent: "95%", icon: python},
   ];
 
   const cards = [...frameworks, ...frameworks];
 
   return (
-    <motion.section
-      className=" p-5 relative backdrop-blur-sm bg-black/20 shadow overflow-hidden  rounded-md w-full py-8 mx-auto"
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, amount: 0.2 }}
-      transition={{ duration: 0.6, delay: 0.5 }}
-    >
+    <section className=" p-5 relative backdrop-blur-sm bg-black/20 shadow overflow-hidden  rounded-md w-full py-8 mx-auto">
       <h4 className="text-3xl lg:text-4xl text-center font-bold bg-gradient-to-r from-accent via-pink-400 mt-4 to-blue-400 bg-clip-text text-transparent montserrat py-2  mb-12">
         Software and framework we use
       </h4>
       <div className="pointer-events-none absolute top-0 left-0 h-full w-16 bg-gradient-to-r  to-transparent z-10" />
       <div className="pointer-events-none absolute top-0 right-0 h-full w-16 bg-gradient-to-l  to-transparent z-10" />
 
-      <motion.div
-        className="flex relative gap-10 whitespace-nowrap overflow-hidden scroll-content w-full "
-        initial={{ opacity: 0.2, y: 25 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, amount: 0.2 }}
-        transition={{ duration: 0.6, delay: 1 }}
-      >
+      <div className="flex relative gap-10 whitespace-nowrap overflow-hidden scroll-content w-full ">
         {cards &&
           cards.map((skill, index) => {
             return (
@@ -52,15 +46,10 @@ function Skills() {
                   className="backdrop-blur-sm bg-purple-400/10 cursor-pointer flex flex-col items-center gap-3 shadow-lg hover:bg-blue-900/20 trans
              rounded-lg w-[140px] md:w-[160px] h-[160px] md:lg-[180px] pt-[var(--md-padding)] "
                 >
-                  <LazyLoadImage
+                  <Image
                     className=" size-[60px] "
-                    alt={placeholdeImage}
-                    effect="blur"
-                    aria-label="framework image"
-                    loading="lazy"
-                    wrapperProps={{
-                      style: { transition: "1s" },
-                    }}
+                    alt={"./placeholder.png"}
+                    width={300}
                     src={skill.icon}
                   />
                   <p className=" text-2xl">{skill.percent}</p>
@@ -69,7 +58,7 @@ function Skills() {
               </div>
             );
           })}
-      </motion.div>
+      </div>
       <style>{`
       .scroll-content{
       animation:scrolling 20s linear infinite
@@ -80,7 +69,7 @@ function Skills() {
 }
         }
       `}</style>
-    </motion.section>
+    </section>
   );
 }
 

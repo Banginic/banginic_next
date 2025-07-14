@@ -1,6 +1,8 @@
+'use client'
 import { useContext } from "react";
-import { person } from "../assets/assets";
+import { person } from "@/assets/photos";
 import { AppContext } from "../context/AppProvider";
+import Image from "next/image";
 
 function User() {
   const appContext = useContext(AppContext);
@@ -9,9 +11,10 @@ function User() {
     <section className="text-center p-2 rounded bg-gray-900/50 ">
       {localStorage.getItem("token") ? (
         <div className="flex flex-col items-center gap-2  py-2">
-          <img
+          <Image
             title="Visit profile"
-            alt="logo"
+            alt="./placeholder.png"
+            width={50}
             src={person}
             className="size-12 rounded-full cursor-pointer dark:bg-900"
           />
@@ -23,7 +26,7 @@ function User() {
             title="Log out"
             onClick={() => {
               window.localStorage.removeItem('user');
-              appContext?.navigate("/");
+              appContext?.router.push("/");
             }}
             className="px-6 py-2 rounded b text-red-200 cursor-pointer border"
           >
@@ -33,7 +36,7 @@ function User() {
       ) : (
         <div className="flex gap-4 p-4 items-center justify-center text-sm">
           <button
-            onClick={() => appContext?.navigate("/login")}
+            onClick={() => appContext?.router.push("/login")}
             title="Login page"
             className="cursor-pointer px-6 rounded py-3 bg-gradient-to-br font-semibold text-[16px] from-pink-400 via-purple-400 to-pink-400 hover:opacity-90 trans"
           >
