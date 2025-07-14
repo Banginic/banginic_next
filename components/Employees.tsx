@@ -1,12 +1,10 @@
 import SocialLinks from "./SocialLinks";
-import { motion } from "framer-motion";
-import myFetch from "../libs/myFetch";
+import myFetch from "@/lib/myFetch";
 import { useQuery } from "@tanstack/react-query";
 import { useState } from "react";
 import AboutUSkeleton from "./skeletons/AboutUSkeleton";
-import { LazyLoadImage } from "react-lazy-load-image-component";
-import "react-lazy-load-image-component/src/effects/blur.css";
-import { person } from "../assets/assets";
+import { person } from "@/assets/photos";
+import Image from "next/image";
 
 interface Employee {
   _id: string;
@@ -89,30 +87,19 @@ function Employees() {
         className=" shadow-accent/50 max-w-sm md:w-md h-[500px] shadow-lg hover:shadow-xl trans dark:border border-pink-400/50 bg-gradient-to-b from-white to-pink-50 lg:w-sm min-h-92
             mx-auto rounded-xl p-4 text-center "
       >
-        <motion.div
-          initial={{ opacity: 0, y: 0 }}
-          whileInView={{ opacity: 1, y: -20 }}
-          viewport={{ once: true, amount: 0.2 }}
-          transition={{ duration: 0.6, delay: 0.6 }}
-          className="size-52 -translate-y-10 bg-red-100 rounded-full mx-auto"
-        >
-          <LazyLoadImage
+        <div className="size-52 -translate-y-10 bg-red-100 rounded-full mx-auto">
+          <Image
             className="size-full rounded-full"
-            alt={person}
-            effect="blur"
-             loading="lazy"
-            aria-label={`Employee ${employee?.fullName} photo`}
-            wrapperProps={{
-              style: { transition: "1s" },
-            }}
+            alt={"./placeholder.png"}
+            width={30}
             src={employee?.photo ? employee?.photo : person}
           />
-        </motion.div>
+        </div>
         <div className="-translate-y-10">
-          <h3 className="text-lg font-bold mt-4 text-black ">{employee?.fullName.toUpperCase()}</h3>
-          <p className=" mano text-pink-400 ">
-            {employee?.position}
-          </p>
+          <h3 className="text-lg font-bold mt-4 text-black ">
+            {employee?.fullName.toUpperCase()}
+          </h3>
+          <p className=" mano text-pink-400 ">{employee?.position}</p>
           <p className="text-accent">{employee?.qualification}</p>
           <p className="text-[17px] text-black/80 my-2 overflow-hidden rounded h-23 ">
             {employee?.motivation}

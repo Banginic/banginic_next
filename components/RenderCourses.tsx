@@ -1,7 +1,8 @@
+'use client'
 import { useState, type Dispatch, type SetStateAction } from "react";
-import { courses } from "../assets/data";
-import getLevelColor from "../libs/getLevelColor";
-import type { CourseType } from "../models/types";
+import { courses } from "@/assets/data";
+import getLevelColor from "@/lib/getLevelColor";
+import type { CourseType } from "@/models/types";
 import {
   Calendar,
   Clock,

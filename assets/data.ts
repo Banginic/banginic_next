@@ -96,7 +96,7 @@ export const sidebarLinks = [
   {label:"About", href: "/about-us", icon:about_us},
   {label:"Contact", href: "/contact-us", icon:contact_us},
   {label:"Classes", href: "/learning", icon:tutorial},
-  {label:"Assets", href: "/assets", icon:open_source},
+  {label:"Assets", href: "/learning-assets", icon:open_source},
   {label:"Careers", href: "/careers", icon:jobs}
 ]
 export const mainNavlinks = [
@@ -105,7 +105,7 @@ export const mainNavlinks = [
   {label:"About", href: "/about-us", icon:about_us},
   {label:"Contact", href: "/contact-us", icon:contact_us},
   {label:"Classes", href: "/learning", icon:tutorial},
-  {label:"Assets", href: "/assets", icon:open_source},
+  {label:"Assets", href: "/learning-assets", icon:open_source},
 ]
 export  const servicesDetails = [
     {icon: branding_logo, title: "Branding ", details: "We work with businesses to develop a unique identity that resonates with your audience, sets you apart from competitors, and drives lasting success. From strategy to design, we help shape every aspect of your brand to ensure it tells a compelling, cohesive story."},
@@ -115,3 +115,58 @@ export  const servicesDetails = [
     {icon: ai_logo, title: "AI Intergration", details: `At ${metaData.title} we transform businesses with cutting-edge AI solutions that drive innovation, efficiency, and growth. Whether you're looking to enhance operations, improve customer experiences, or make smarter decisions, our AI-driven technologies deliver the insights and automation your business needs to thrive in the digital age.`}
   ]
  
+  
+export const courses = [
+    {
+      id: 1,
+      title: "HTML & CSS Fundamentals",
+      description: "Master the building blocks of web development with HTML5 and CSS3",
+      price: 299,
+      duration: "4 weeks",
+      startDate: "July 15, 2025",
+      level: "Beginner",
+      students: 156,
+      rating: 4.8,
+      features: ["Responsive Design", "Flexbox & Grid", "CSS Animations", "Project Portfolio"],
+      image: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=400&h=250&fit=crop"
+    },
+    {
+      id: 2,
+      title: "JavaScript Complete Course",
+      description: "From basics to advanced concepts including ES6+, async programming, and DOM manipulation",
+      price: 499,
+      duration: "8 weeks",
+      startDate: "July 22, 2025",
+      level: "Intermediate",
+      students: 243,
+      rating: 4.9,
+      features: ["ES6+ Features", "Async/Await", "DOM Manipulation", "API Integration"],
+      image: "https://images.unsplash.com/photo-1579468118864-1b9ea3c0db4a?w=400&h=250&fit=crop"
+    },
+    {
+      id: 3,
+      title: "React Development Bootcamp",
+      description: "Build modern web applications with React, hooks, and state management",
+      price: 699,
+      duration: "10 weeks",
+      startDate: "August 5, 2025",
+      level: "Advanced",
+      students: 189,
+      rating: 4.9,
+      features: ["React Hooks", "Context API", "Redux", "Real Projects"],
+      image: "https://images.unsplash.com/photo-1633356122544-f134324a6cee?w=400&h=250&fit=crop"
+    },
+    {
+      id: 4,
+      title: "Full Stack Web Development",
+      description: "Complete web development with frontend and backend technologies",
+      price: 999,
+      duration: "16 weeks",
+      startDate: "August 12, 2025",
+      level: "Professional",
+      students: 98,
+      rating: 5.0,
+      features: ["MERN Stack", "Database Design", "API Development", "Deployment"],
+      image: "https://images.unsplash.com/photo-1551650975-87deedd944c3?w=400&h=250&fit=crop"
+    }
+  ];
