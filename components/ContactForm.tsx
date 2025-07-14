@@ -63,10 +63,10 @@ function ContactForm() {
   return (
     <form
       onSubmit={handleFormSubmit}
-      className=" shadow-accent/20 shadow-lg p-8 lg:px-12 w-sm mb-8 lg:w-105 border border-pink-400/50 rounded-lg bg-black mx-auto md:mx-0"
+      className=" shadow-accent/20 shadow-lg p-8 lg:px-12 w-sm mb-8 lg:w-105 border border-pink-400/50 rounded-lg bg-black/50 mx-auto md:mx-0"
     >
       <div className="mb-8 ">
-        <Logo logoSize={8} textSize="heading4" />
+        <Logo logoSize={40} textSize="heading4" />
         <p className="">Please send your message using the form below </p>
       </div>
       <div>

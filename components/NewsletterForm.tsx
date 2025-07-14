@@ -58,7 +58,7 @@ function NewsletterForm() {
         </label>
         <input
           type="email"
-          className="lg:ml-3 w-full border bg-transparent border-gray-500 py-3 rounded-lg px-3"
+          className="lg:ml-3 w-full border bg-transparent border-gray-500 py-3 rounded-lg px-3 placeholder:text-white"
           value={newSignee.email}
           required
           autoComplete="email"

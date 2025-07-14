@@ -36,7 +36,7 @@ function User() {
       ) : (
         <div className="flex gap-4 p-4 items-center justify-center text-sm">
           <button
-            onClick={() => appContext?.router.push("/login")}
+            onClick={() => appContext?.router.push("/sign-in")}
             title="Login page"
             className="cursor-pointer px-6 rounded py-3 bg-gradient-to-br font-semibold text-[16px] from-pink-400 via-purple-400 to-pink-400 hover:opacity-90 trans"
           >

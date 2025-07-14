@@ -125,8 +125,8 @@
   border-radius: 15px;
 
  }
- ::placeholder{
-  color: white;
+input::placeholder, textarea::placeholder{
+  color: rgb(149, 166, 167);
  }
  .btn-outline:hover{
   background-color: var(--primary-color2);

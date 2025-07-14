@@ -1,24 +1,24 @@
 import Link from "next/link";
-import { socialMediaLinks, footLinks, metaData } from "../assets/assets";
+import { socialMediaLinks, footLinks, metaData } from "@/assets/data";
 import { SocialLinks, Logo, NewsletterForm } from "./exportComp";
 
 function Footer() {
   return (
-    <section 
+    <footer 
     id="footer"
-    className=" rounded-t-xl lg:w-[95%] mx-auto  bg-black px-5 pt-10 boder-t-2">
+    className="mx-auto text-pink-50 bg-black px-5 pt-10 boder-t-2">
       <div className="flex flex-col md:flex-row gap-10 md:justify-around pb-10">
         <div className="flex flex-col gap-5  ">
-          <Logo textSize="font-bold text-3xl lg:text-4xl" logoSize={20} />
+          <Logo textSize="font-bold text-3xl lg:text-4xl" logoSize={45} />
           <SocialLinks links={socialMediaLinks} />
           <article className="my-5 flex flex-col gap-2 ">
             {footLinks.map((link, index) => (
               <Link
                 key={index}
-                href={link.pathname}
+                href={link.href}
                 className="opacity-80 hover:underline text-pink-100"
               >
-                {link.name}
+                {link.label}
               </Link>
             ))}
           </article>
@@ -33,8 +33,8 @@ function Footer() {
       </div>
       <hr className="w-4/5 mx-auto border border-gray-700" />
       
-      <p className=" text-center p-4  text-sm opacity-80">© {new Date().getFullYear()} {metaData.name}. All rights reserved.</p>
-    </section>
+      <p className=" text-center p-4  text-sm opacity-80">© {new Date().getFullYear()} {metaData.title}. All rights reserved.</p>
+    </footer>
   );
 }
 

@@ -35,7 +35,7 @@ function ContactCard() {
     window.open(url, "blank");
   }
   return (
-    <div className="shadow-accent/20 shadow-lg text-sm bg-black/20 border border-pink-400/50 backdrop:blur-md grid gap-1 lg:gap-2 p-8 lg:h-[270px] max-w-150 rounded-md grid-items-center">
+    <div className="shadow-accent/20 shadow-lg text-sm bg-black/20 border border-pink-400/50 backdrop:blur-md grid gap-1 lg:gap-2 p-8 lg:h-[270px] max-w-lg mx-auto  rounded-md grid-items-center">
       <button
         title="click to whatsApp"
         className=" px-3 text-start cursor-pointer text-pink-100 text-[16px] flex items-center gap-4.5 hover:bg-gray-200/10 hover:dark:bg-gray-800/50 trans rounded w-[300px] mb-1 hover:underline"

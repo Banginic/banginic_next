@@ -2,6 +2,21 @@ import type { Metadata } from "next";
 import "./globals.css";
 import "./my_css.css";
 import Footer from "@/components/Footer";
+import { Outfit, Montserrat } from 'next/font/google'
+
+const outfit = Outfit({
+  subsets: ['latin'],
+  variable: '--font-outfit',
+  weight: ['400', '500', '700'],
+  display: 'swap',
+})
+
+const montserrat = Montserrat({
+  subsets: ['latin'],
+  variable: '--font-montserrat',
+  weight: ['400', '600', '700'],
+  display: 'swap',
+})
 
 export const metadata: Metadata = {
   title: {
@@ -17,7 +32,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" className={`${outfit.variable} ${montserrat.variable}`}>
       <body
         className={`relative min-h-screen bg-gradient-to-br  from-slate-900 via-purple-900 to-slate-900 text-white 
          `}

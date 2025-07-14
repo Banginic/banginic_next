@@ -51,9 +51,9 @@ export  const footLinks = [
   {label:"Home", href: "/"},
   {label:"Services", href: "/services"},
   {label:"News", href: "/news"},
-  {label:"Careers", href: "/Careers"},
-  {label:"Privacy Policy", href: "/privacyPolicy"},
-  {label:"Terms and Conditions", href: "/termsAndCon"}
+  {label:"Careers", href: "/career"},
+  {label:"Privacy Policy", href: "/privacy-policy"},
+  {label:"Terms and Conditions", href: "/terms-and-condition"}
 ]
 export const services = [
   {
@@ -101,7 +101,7 @@ export const sidebarLinks = [
 ]
 export const mainNavlinks = [
   {label:"Services", href: "/services", icon:services_photo},
-  {label:"Projects", href: "/works/all", icon:projects_photo},
+  {label:"Projects", href: "/projects", icon:projects_photo},
   {label:"About", href: "/about-us", icon:about_us},
   {label:"Contact", href: "/contact-us", icon:contact_us},
   {label:"Classes", href: "/learning", icon:tutorial},

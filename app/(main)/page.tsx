@@ -1,4 +1,4 @@
-import { Hero, AboutUs, Counter, Services, Partners, Skills, Testimonials, ContactUs } from "@/components/home/exportHomeComp";
+import { Hero, AboutUs, Counter, Services, Partners, Skills, ContactUs } from "@/components/home/exportHomeComp";
 
 function MainPage() {
   return (
