@@ -6,7 +6,7 @@ import { comparePassword } from "@/lib/bcrypt";
 import { generateToken } from "@/lib/jwt";
 import { cookies } from "next/headers";
 
-export async function Post(req: Request) {
+export async function POST(req: Request) {
   const body = await req.json();
   const { email, password } = body;
 
@@ -16,18 +16,21 @@ export async function Post(req: Request) {
       { status: 400 }
     );
   }
+   
+
   const user = await db
     .select()
     .from(userTable)
     .where(eq(userTable.email, email))
     .limit(1);
 
-  if (user.length === 0) {
-    return NextResponse.json(
-      { success: false, error: "Invalid email or password" },
-      { status: 400 }
-    );
-  }
+    if (user.length === 0) {
+      console.log('nothing')
+      return NextResponse.json(
+        { success: false, error: "Invalid email or password" },
+        // { status: 400 }
+      );
+    }
   const isValidPassword = comparePassword(password, user[0].password);
 
   if (!isValidPassword) {

@@ -1,5 +1,5 @@
 CREATE TABLE "employees" (
-	"id" integer PRIMARY KEY GENERATED ALWAYS AS IDENTITY (sequence name "employees_id_seq" INCREMENT BY 1 MINVALUE 1 MAXVALUE 2147483647 START WITH 1 CACHE 1),
+	"id" serial PRIMARY KEY NOT NULL,
 	"name" varchar(100) NOT NULL,
 	"phone" varchar(15) NOT NULL,
 	"photo" varchar(250) DEFAULT '' NOT NULL,
@@ -20,7 +20,7 @@ CREATE TABLE "jobs" (
 );
 --> statement-breakpoint
 CREATE TABLE "messages" (
-	"id" integer PRIMARY KEY GENERATED ALWAYS AS IDENTITY (sequence name "messages_id_seq" INCREMENT BY 1 MINVALUE 1 MAXVALUE 2147483647 START WITH 1 CACHE 1),
+	"id" serial PRIMARY KEY NOT NULL,
 	"name" varchar(25) NOT NULL,
 	"email" varchar(30) NOT NULL,
 	"phone" varchar(15) NOT NULL,
@@ -37,32 +37,33 @@ CREATE TABLE "new_employee" (
 	"phone" varchar(15) NOT NULL,
 	"motivation" varchar(500) NOT NULL,
 	"job" varchar(50) NOT NULL,
+	"job_id" integer NOT NULL,
 	"resume" varchar(250) NOT NULL,
 	"created_at" timestamp DEFAULT now() NOT NULL,
 	CONSTRAINT "new_employee_email_unique" UNIQUE("email")
 );
 --> statement-breakpoint
 CREATE TABLE "news" (
-	"id" integer PRIMARY KEY GENERATED ALWAYS AS IDENTITY (sequence name "news_id_seq" INCREMENT BY 1 MINVALUE 1 MAXVALUE 2147483647 START WITH 1 CACHE 1),
+	"id" serial PRIMARY KEY NOT NULL,
 	"subject" varchar(100) NOT NULL,
 	"body" varchar(1000) NOT NULL
 );
 --> statement-breakpoint
 CREATE TABLE "newsletter_subscribers" (
-	"id" integer PRIMARY KEY GENERATED ALWAYS AS IDENTITY (sequence name "newsletter_subscribers_id_seq" INCREMENT BY 1 MINVALUE 1 MAXVALUE 2147483647 START WITH 1 CACHE 1),
+	"id" serial PRIMARY KEY NOT NULL,
 	"email" varchar(100) NOT NULL,
 	"created_at" timestamp DEFAULT now() NOT NULL,
 	CONSTRAINT "newsletter_subscribers_email_unique" UNIQUE("email")
 );
 --> statement-breakpoint
 CREATE TABLE "newsletters" (
-	"id" integer PRIMARY KEY GENERATED ALWAYS AS IDENTITY (sequence name "newsletters_id_seq" INCREMENT BY 1 MINVALUE 1 MAXVALUE 2147483647 START WITH 1 CACHE 1),
+	"id" serial PRIMARY KEY NOT NULL,
 	"subject" varchar(100) NOT NULL,
 	"body" varchar(1000) NOT NULL
 );
 --> statement-breakpoint
 CREATE TABLE "projects" (
-	"id" integer PRIMARY KEY GENERATED ALWAYS AS IDENTITY (sequence name "projects_id_seq" INCREMENT BY 1 MINVALUE 1 MAXVALUE 2147483647 START WITH 1 CACHE 1),
+	"id" serial PRIMARY KEY NOT NULL,
 	"project_name" varchar(100) NOT NULL,
 	"description" varchar(500) NOT NULL,
 	"url" varchar(250) NOT NULL,
@@ -75,7 +76,7 @@ CREATE TABLE "projects" (
 );
 --> statement-breakpoint
 CREATE TABLE "testimonials" (
-	"id" integer PRIMARY KEY GENERATED ALWAYS AS IDENTITY (sequence name "testimonials_id_seq" INCREMENT BY 1 MINVALUE 1 MAXVALUE 2147483647 START WITH 1 CACHE 1),
+	"id" serial PRIMARY KEY NOT NULL,
 	"name" varchar(25) NOT NULL,
 	"email" varchar(30) NOT NULL,
 	"message" varchar(500) NOT NULL,
@@ -88,13 +89,12 @@ CREATE TABLE "testimonials" (
 );
 --> statement-breakpoint
 CREATE TABLE "users" (
-	"id" integer PRIMARY KEY GENERATED ALWAYS AS IDENTITY (sequence name "users_id_seq" INCREMENT BY 1 MINVALUE 1 MAXVALUE 2147483647 START WITH 1 CACHE 1),
+	"id" serial PRIMARY KEY NOT NULL,
 	"name" varchar(25) NOT NULL,
 	"email" varchar(30) NOT NULL,
 	"password" varchar(250) NOT NULL,
 	"is_admin" boolean DEFAULT false NOT NULL,
-	"message_id" integer,
 	CONSTRAINT "users_email_unique" UNIQUE("email")
 );
 --> statement-breakpoint
-ALTER TABLE "users" ADD CONSTRAINT "users_message_id_messages_id_fk" FOREIGN KEY ("message_id") REFERENCES "public"."messages"("id") ON DELETE cascade ON UPDATE no action;
+ALTER TABLE "new_employee" ADD CONSTRAINT "new_employee_job_id_jobs_id_fk" FOREIGN KEY ("job_id") REFERENCES "public"."jobs"("id") ON DELETE no action ON UPDATE no action;

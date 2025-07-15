@@ -1,8 +1,13 @@
 "use client";
-import React, { ChangeEvent, useState } from "react";
+import { AppContext } from "@/context/AppProvider";
+import React, { ChangeEvent, FormEvent, useContext, useState } from "react";
+import { toast } from "react-toastify";
 
 function Login() {
+  const { setUser, router } = useContext(AppContext)!;
   const [state, setState] = useState("Login");
+  const [error, setError] = useState("");
+  const [isLoading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -18,10 +23,61 @@ function Login() {
     const { name, value } = event.target;
     setFormData({ ...formData, [name]: value });
   }
+  async function handleSubit(event: FormEvent) {
+    event.preventDefault();
+    setError("");
+    setLoading(true);
+
+    async function postForm(endpoint: string) {
+      const res = await fetch(endpoint, {
+        method: "POST",
+        body: JSON.stringify(formData),
+        headers: { "Content-Type": "application/json" },
+      });
+      return await res.json();
+    }
+
+    try {
+      //    login state
+      if (state === "Login") {
+        const data = await postForm("/api/sign-in");
+        console.log(data);
+        if (data.success) {
+          toast.success(data.message);
+          localStorage.setItem("user", JSON.stringify(data.data[0]));
+          setUser(data.data[0]);
+          setFormData({ name: "", email: "", password: "" });
+          return router.push("/admin");
+        }
+        setError(data.error);
+        return;
+      }
+
+      // handle sign up...
+      const data = await postForm("/api/sign-up");
+      console.log(data);
+      if (data.success) {
+        toast.success(data.message);
+        localStorage.setItem("user", JSON.stringify(data.data[0]));
+        setUser(data.data[0]);
+        setFormData({ name: "", email: "", password: "" });
+        return router.push("/admin");
+      }
+      setError(data.error);
+      return;
+    } catch (ex) {
+      if (ex instanceof Error) {
+        return setError(ex.message);
+      }
+      setError("Error posting to database.");
+    } finally {
+      setLoading(false);
+    }
+  }
   return (
     <div className="h-screen grid place-items-center bg-blac">
       <form
-        action=""
+        onSubmit={handleSubit}
         className="border rounded border-pink-300/50 p-8 w-sm shadow bg-black/70 backdrop:blur-lg"
       >
         <h1 className="text-2xl font-semibold text-center">{state}</h1>
@@ -73,12 +129,19 @@ function Login() {
             required
             autoComplete="password"
             placeholder="**********"
-            maxLength={10}
+            maxLength={25}
             className=" w-full border border-pink-300/50 rounded px-4 py-2 bg-transparent"
           />
         </div>
-        <button className="bg-pink-400 hover:scale-105 trans text-white px-4 py-2.5 rounded shadow cursor-pointer mt-8 w-full">
-          Login
+        <button
+          disabled={isLoading}
+          className="bg-pink-400 disabled:bg-pink-400/50 hover:scale-105 trans text-white px-4 py-2.5 rounded shadow cursor-pointer mt-8 w-full"
+        >
+          {isLoading ? (
+            <span className="animation-pulse">Loading...</span>
+          ) : (
+            state
+          )}
         </button>
         <div>
           {state === "Login" ? (
@@ -103,7 +166,7 @@ function Login() {
             </p>
           )}
         </div>
-        <p className="h-4 mt-2 text-red-500 text-center"></p>
+        <p className="h-4 mt-2 text-red-500 text-center">{error}</p>
       </form>
     </div>
   );

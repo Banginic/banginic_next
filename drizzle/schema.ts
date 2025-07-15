@@ -11,28 +11,28 @@ import {
 } from "drizzle-orm/pg-core";
 
 export const userTable = pgTable("users", {
-  id: integer().primaryKey().generatedAlwaysAsIdentity(),
+id: serial('id').primaryKey(),
   name: varchar("name", { length: 25 }).notNull(),
   email: varchar("email", { length: 30 }).notNull().unique(),
   password: varchar("password", { length: 250 }).notNull(),
   isAdmin: boolean("is_admin").notNull().default(false),
-  messages: integer("message_id").references(() => messageTable.id, {
-    onDelete: "cascade",
-  }),
+  // messages: integer("message_id").references(() => messageTable.id, {
+  //   onDelete: "cascade",
+  // }).default(0)
 });
 
 export const messageTable = pgTable("messages", {
-  id: integer().primaryKey().generatedAlwaysAsIdentity(),
+ id: serial('id').primaryKey(),
   name: varchar("name", { length: 25 }).notNull(),
   email: varchar("email", { length: 30 }).notNull().unique(),
   phone: varchar("phone", { length: 15 }).notNull(),
   service: varchar("service", { length: 50 }).notNull(),
   message: varchar("message", { length: 500 }).notNull(),
-  createdAt: timestamp("created_at").notNull().defaultNow(),
+  createdAt: timestamp("created_at").notNull().defaultNow(), 
 });
 
 export const testimonialTable = pgTable("testimonials", {
-  id: integer().primaryKey().generatedAlwaysAsIdentity(),
+id: serial('id').primaryKey(),
   name: varchar("name", { length: 25 }).notNull(),
   email: varchar("email", { length: 30 }).notNull().unique(),
   message: varchar("message", { length: 500 }).notNull(),
@@ -44,7 +44,7 @@ export const testimonialTable = pgTable("testimonials", {
 });
 
 export const projectTable = pgTable("projects", {
-  id: integer().primaryKey().generatedAlwaysAsIdentity(),
+id: serial('id').primaryKey(),
   projectName: varchar("project_name", { length: 100 }).notNull(),
   description: varchar("description", { length: 500 }).notNull(),
   url: varchar("url", { length: 250 }).notNull(),
@@ -57,25 +57,25 @@ export const projectTable = pgTable("projects", {
 });
 
 export const newsletterSubscribersTable = pgTable("newsletter_subscribers", {
-  id: integer().primaryKey().generatedAlwaysAsIdentity(),
+ id: serial('id').primaryKey(),
   email: varchar("email", { length: 100 }).notNull().unique(),
   createdAt: timestamp("created_at").notNull().defaultNow(),
 });
 
 export const newsletterTable = pgTable("newsletters", {
-  id: integer().primaryKey().generatedAlwaysAsIdentity(),
+id: serial('id').primaryKey(),
   subject: varchar("subject", { length: 100 }).notNull(),
   body: varchar("body", { length: 1000 }).notNull(),
 });
 
 export const newsTable = pgTable("news", {
-  id: integer().primaryKey().generatedAlwaysAsIdentity(),
+  id: serial('id').primaryKey(),
   subject: varchar("subject", { length: 100 }).notNull(),
   body: varchar("body", { length: 1000 }).notNull(),
 });
 
 export const jobTable = pgTable("jobs", {
-  id: serial("id").primaryKey(),
+  id: serial('id').primaryKey(),
   title: varchar("title", { length: 100 }).notNull(),
   location: varchar("location", { length: 100 }).notNull(),
   description: varchar("description", { length: 500 }).notNull(),
@@ -84,7 +84,7 @@ export const jobTable = pgTable("jobs", {
 });
 
 export const newEmployeeTable = pgTable("new_employee", {
-  id: serial("id").primaryKey(),
+  id: serial('id').primaryKey(),
   name: varchar("name", { length: 25 }).notNull(),
   email: varchar("email", { length: 30 }).notNull().unique(),
   phone: varchar("phone", { length: 15 }).notNull(),
@@ -98,7 +98,7 @@ export const newEmployeeTable = pgTable("new_employee", {
 
 
 export const employeeTable = pgTable("employees", {
-  id: integer().primaryKey().generatedAlwaysAsIdentity(),
+ id: serial('id').primaryKey(),
   name: varchar("name", { length: 100 }).notNull(),
   phone: varchar("phone", { length: 15 }).notNull(),
   photo: varchar("photo", { length: 250 }).notNull().default(""),
