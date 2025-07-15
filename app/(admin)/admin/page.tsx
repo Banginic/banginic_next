@@ -1,9 +1,10 @@
 import React from 'react'
+import { AdminHero } from '@/admin-component'
 
 function AdminHome() {
   return (
     <div>
-      admin
+      <AdminHero />
     </div>
   )
 }
