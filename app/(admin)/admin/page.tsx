@@ -1,9 +1,10 @@
 import React from 'react'
-import { AdminHero } from '@/admin-component'
+import { AdminHero, Login } from '@/admin-component/index'
 
 function AdminHome() {
   return (
-    <div>
+    <div className='relative'>
+      {/* <Login /> */}
       <AdminHero />
     </div>
   )

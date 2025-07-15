@@ -1,11 +1,11 @@
 import React from 'react'
 
-function Employee() {
+function page() {
   return (
     <div>
-      employee
+      
     </div>
   )
 }
 
-export default Employee
+export default page
