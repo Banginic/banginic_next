@@ -28,6 +28,7 @@ export interface AppContextType {
   adminSidebar: boolean;
   setAdminSidebar: React.Dispatch<React.SetStateAction<boolean>>;
   showMainNavbar: boolean
+  showAdminNavbar: boolean
 }
 
 export const AppContext = createContext<AppContextType | undefined>(undefined);
@@ -44,11 +45,14 @@ function AppProvider({ children }: PropsType) {
     null
   );
   const [showNavbar, setShowNavbar] = useState(false);
+  const [showSidebar, setShowSidebar] = useState<boolean>(false);
+
   const [mainSidebar, setMainSidebar] = useState(false);
   const [showMainNavbar, setMainNavbar] = useState(false);
+  
+  const [showAdminNavbar, setAdminNavbar] = useState(false);
   const [adminSidebar, setAdminSidebar] = useState(false);
   const [toggleNavbar, setToggleNavbar] = useState(false);
-  const [showSidebar, setShowSidebar] = useState<boolean>(false);
   const [theme, setTheme] = useState<"dark" | "light" | string>("");
   const [token, setToken] = useState(
     () => localStorage.getItem("token") || null
@@ -140,7 +144,7 @@ function AppProvider({ children }: PropsType) {
     setLang,
     mainSidebar, setMainSidebar,
     adminSidebar, setAdminSidebar,
-    showMainNavbar
+    showMainNavbar, showAdminNavbar
   };
   return <AppContext.Provider value={values}>{children}</AppContext.Provider>;
 }

@@ -106,6 +106,21 @@ export const mainNavlinks = [
   {label:"Contact", href: "/contact-us", icon:contact_us},
 
 ]
+export const adminNavlinks = [
+  {label:"Messages", href: "/services", icon:services_photo},
+  {label:"Projects", href: "/projects", icon:projects_photo},
+  {label:"Employees", href: "/about-us", icon:about_us},
+  {label:"Newsletter", href: "/contact-us", icon:contact_us},
+
+]
+export const adminSidelinks = [
+  {label:"Services", href: "/services", icon:services_photo},
+  {label:"Projects", href: "/projects", icon:projects_photo},
+  {label:"About", href: "/about-us", icon:about_us},
+  {label:"Contact", href: "/contact-us", icon:contact_us},
+  {label:"Classes", href: "/learning", icon:tutorial},
+  {label:"Assets", href: "/learning-assets", icon:open_source},
+]
 export const mainSidelinks = [
   {label:"Services", href: "/services", icon:services_photo},
   {label:"Projects", href: "/projects", icon:projects_photo},
