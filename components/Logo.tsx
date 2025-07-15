@@ -14,7 +14,7 @@ function Logo(props: Props) {
         alt={"./placeholder.png"}
         src={logo}
       />
-      <p className={`${props.textSize} montserrat  `}>Banginic</p>
+      <p className={`${props.textSize} montserrat  font-bold bg-gradient-to-tr from-accent via-pink-400 to-blue-400 bg-clip-text text-transparent`}>Banginic</p>
     </div>
   );
 }

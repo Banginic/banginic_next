@@ -1,6 +1,6 @@
 "use client";
 import Link from "next/link";
-import { mainNavlinks } from "@/assets/data";
+import { mainNavlinks, mainSidelinks } from "@/assets/data";
 import {
   Hamburger,
   Logo,
@@ -15,10 +15,10 @@ import { AppContext } from "@/context/AppProvider";
 function MainNavbar() {
   const { user, mainSidebar, setMainSidebar } = useContext(AppContext)!;
   return (
-    <header className="h-[10dvh] lg:h-[12dvh] flex lg:py-8 items-center relative ">
+    <header className="h-[10dvh] lg:h-[15dvh] flex lg:py-8 items-center relative ">
       <nav
-        className={`flex items-center justify-between w-full px-6  ${
-          !user ? "lg:px-24" : "lg:justify-around"
+        className={`flex items-center justify-between  w-full px-6  ${
+          user ? "lg:px-24" : "lg:justify-around"
         } w-full`}
       >
         <Link href={"/"}>
@@ -42,7 +42,7 @@ function MainNavbar() {
         <Sidebar
           isSidebarOpen={mainSidebar}
           setSidebar={setMainSidebar}
-          navlinks={mainNavlinks}
+          navlinks={mainSidelinks}
         />
       </div>
     </header>

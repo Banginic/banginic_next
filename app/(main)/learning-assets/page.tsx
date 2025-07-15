@@ -62,8 +62,8 @@ function Assets() {
     },
   ];
   return (
-    <div className="min-h-screen">
-      <h1 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-accent via-pink-400 to-blue-400 bg-clip-text text-transparent montserrat text-center">
+    <div className="min-h-screen mt-8">
+      <h1 className="text-4xl md:text-5xl  font-bold bg-gradient-to-r from-accent via-pink-400 to-blue-400 bg-clip-text text-transparent montserrat text-center">
         ASSETS
       </h1>
       <p className="text-center text-[16px] w-4/5 mx-auto opacity-80 mt-1">

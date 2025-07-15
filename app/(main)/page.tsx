@@ -2,7 +2,7 @@ import { Hero, AboutUs, Counter, Services, Partners, Skills, ContactUs } from "@
 
 function MainPage() {
   return (
-    <div>
+    <div className="2xl:px-[10rem]">
       <Hero />
       <div className="md:pt-7 lg:px-1">
         {/* <ColorLines /> */}

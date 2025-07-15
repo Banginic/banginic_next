@@ -6,10 +6,10 @@ import { hero_image } from "@/assets/photos";
 function Hero() {
   return (
     <div
-      className={`h-screen flex overflow-hidden flex-col md:flex-row ${styles.translate} sm:pt-[5rem] p-2 lg:pt-0 items-center md:items-start lg:px-14 2xl:pt-[5rem]`}
+      className={`h-screen  flex overflow-hidden flex-col md:flex-row ${styles.translate} sm:pt-[5rem] p-2 lg:pt-18 items-center md:items-start lg:px-14 2xl:pt-[5rem]`}
     >
       <div className=" grid mt-5 lg:w-[70%] text-3xl px-10">
-        <h1 className="mt-2 montserrat md:mt-0 text-[2.5rem] md:text-5xl lg:text-5xl 2xl:text-6xl font-bold bg-gradient-to-r from-accent via-pink-400 to-blue-400 bg-clip-text text-transparent w- z-10   title-image ">
+        <h1 className="mt-2 montserrat md:mt-0 text-[2.5rem] md:text-5xl lg:text-5xl 2xl:text-6xl font-bold bg-gradient-to-r from-accent via-pink-400 to-blue-400 bg-clip-text text-transparent z-10   title-image ">
           Building Bold Digital Experiences That Work Everywhere.
         </h1>
 
