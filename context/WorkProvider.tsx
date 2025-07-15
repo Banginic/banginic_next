@@ -1,6 +1,6 @@
 'use client'
 import React, { createContext, useState } from "react";
-import type { WorkContextType } from "../models/projectTypes";
+import type { WorkContextType } from "@/models/projectTypes";
 
 export const WorkContext = createContext<WorkContextType | undefined>(
   undefined

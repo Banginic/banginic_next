@@ -14,7 +14,7 @@ function Counter() {
             key={index}
             className="flex items-center justify-center gap-2  px-2  "
           >
-            <p className="heading1  text-purple-400 mano">{count.total}</p>
+            <p className="heading1  text-purple-400 montserrat">{count.total}</p>
             <span className="">
               <p className="text-[16px] opacity-80 ">{count.para1}</p>
               <p className="text-[16px]  opacity-80">{count.para2}</p>

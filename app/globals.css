@@ -102,7 +102,9 @@
  .trans{
   transition: all 250ms ease;
  }
- 
+  header nav a:active{
+    color: red;
+  }
  .pointer:hover{
  cursor: pointer;
  opacity: 0.8;

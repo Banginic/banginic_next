@@ -21,7 +21,7 @@ function Sidebar({
     <aside
       className={`${
         isSidebarOpen ? "fixed" : "hidden"
-      } lg:hidden  right-0 left-0 top-0 min-h-105 z-50 bg-black/50 backdrop-blur-sm  p-6 `}
+      } lg:hidden  right-0 left-0 top-0 min-h-105 z-50 bg-black/90 backdrop-blur-sm  p-6 rounded`}
       onClick={() => appContext?.setShowSidebar(false)}
     >
       <User />
@@ -31,7 +31,7 @@ function Sidebar({
       >
         <Image src={close_menu} alt="./placeholder.png" width={40} />
       </button>
-      <ul className="flex md:hidden justify-between gap-5 flex-col my-12 text-center">
+      <ul className="flex  justify-between gap-5 flex-col my-12 text-center">
         {navlinks.map((link, index) => {
           return (
             <Link

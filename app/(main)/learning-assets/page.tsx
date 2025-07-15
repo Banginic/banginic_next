@@ -78,6 +78,7 @@ function Assets() {
           >
             {projectAssets.map((asset) => (
               <article
+              key={asset.id}
                 className="asset-card bg-card-gradient bg-white/10 border border-pink-400/20 hover:shadow-accent/30 shadow-lg backdrop:blur-md rounded-2xl p-6 card-hover download-hover"
                 data-category="templates"
               >
@@ -106,9 +107,9 @@ function Assets() {
                     viewBox="0 0 24 24"
                   >
                     <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="2"
                       d="M12 10v6m0 0l-4-4m4 4l4-4m-6 4h8"
                     ></path>
                   </svg>

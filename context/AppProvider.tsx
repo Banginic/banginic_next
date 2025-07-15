@@ -27,6 +27,7 @@ export interface AppContextType {
   setMainSidebar: React.Dispatch<React.SetStateAction<boolean>>;
   adminSidebar: boolean;
   setAdminSidebar: React.Dispatch<React.SetStateAction<boolean>>;
+  showMainNavbar: boolean
 }
 
 export const AppContext = createContext<AppContextType | undefined>(undefined);
@@ -40,10 +41,11 @@ function AppProvider({ children }: PropsType) {
 
   const workContext = useContext(WorkContext);
   const [user, setUser] = useState<string | null>(
-    () => localStorage.getItem("user") || null
+    null
   );
   const [showNavbar, setShowNavbar] = useState(false);
   const [mainSidebar, setMainSidebar] = useState(false);
+  const [showMainNavbar, setMainNavbar] = useState(false);
   const [adminSidebar, setAdminSidebar] = useState(false);
   const [toggleNavbar, setToggleNavbar] = useState(false);
   const [showSidebar, setShowSidebar] = useState<boolean>(false);
@@ -113,10 +115,10 @@ function AppProvider({ children }: PropsType) {
     const offSet = pageYOffset;
     removeAllDisplay();
     if (offSet < 5) {
-      return setShowNavbar(false);
+      return setMainNavbar(false);
     }
     if (offSet > 500) {
-      return setShowNavbar(true);
+      return setMainNavbar(true);
     }
   }, [toggleNavbar]);
 
@@ -137,7 +139,8 @@ function AppProvider({ children }: PropsType) {
     lang,
     setLang,
     mainSidebar, setMainSidebar,
-    adminSidebar, setAdminSidebar
+    adminSidebar, setAdminSidebar,
+    showMainNavbar
   };
   return <AppContext.Provider value={values}>{children}</AppContext.Provider>;
 }

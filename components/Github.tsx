@@ -1,4 +1,6 @@
-import { githup, metaData, placeholdeImage } from "../assets/assets";
+import { metaData } from "@/assets/assets";
+import { githup } from "@/assets/photos";
+import Image from "next/image";
 
 function Github() {
   return (
@@ -8,7 +10,7 @@ function Github() {
       target="self"
       title="Go to our Githup page"
     >
-      <img src={githup} width={35} alt={placeholdeImage} className="" />
+      <Image src={githup} width={35} alt={"./placeholder.png"} className="" />
     </a>
   );
 }

@@ -13,7 +13,7 @@ function Hamburger({
     <div className="lg:hidden ">
       <button
         onClick={() => setSidebar(true)}
-        className="md:hidden cursor-pointer hover:bg-white/10 trans rounded p-1 "
+        className="lg:hidden cursor-pointer hover:bg-white/10 trans rounded p-1 "
       >
         <Image src={open_menu} width={40} alt="./placeholder.png" />
       </button>

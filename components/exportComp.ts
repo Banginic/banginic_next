@@ -41,5 +41,8 @@ export { default as Hamburger } from './Hamburger'
 export { default as Navlinks } from './NavLinks'
 export { default as RenderCourses } from './RenderCourses'
 export { default as  LearningForm } from './LearningForm'
+export { default as  DeveloperLink } from './DeveloperLink'
+export { default as  Github } from './Github'
+export { default as Header } from './Header'
 // export { default as Employees } from './Employees'
 
