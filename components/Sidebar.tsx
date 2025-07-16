@@ -1,3 +1,4 @@
+"use client";
 import { useContext, Dispatch, SetStateAction } from "react";
 import type { NavlinkTypes } from "@/models/types";
 import { User } from "@/components/exportComp";
@@ -5,6 +6,7 @@ import { AppContext } from "@/context/AppProvider";
 import Link from "next/link";
 import Image from "next/image";
 import { close_menu } from "@/assets/photos";
+import { usePathname } from "next/navigation";
 
 function Sidebar({
   isSidebarOpen,
@@ -15,6 +17,11 @@ function Sidebar({
   navlinks: NavlinkTypes[];
   isSidebarOpen: boolean;
 }) {
+  const pathname = usePathname();
+  const signInRoute = pathname.startsWith("/admin")
+    ? "/admin/sign-in"
+    : "/sign-in";
+  const homeRoute = pathname.startsWith("/admin") ? "/admin" : "/";
   const appContext = useContext(AppContext);
 
   return (
@@ -24,7 +31,9 @@ function Sidebar({
       } lg:hidden  right-0 left-0 top-0 min-h-105 z-50 bg-black/90 backdrop-blur-sm  p-6 rounded`}
       onClick={() => appContext?.setShowSidebar(false)}
     >
-      <User />
+      <div onClick={() => setSidebar(false)}>
+        <User signInRoute={signInRoute} homeRoute={homeRoute} />
+      </div>
       <button
         onClick={() => setSidebar(false)}
         className="absolute top-8 right-4 cursor-pointer hover:bg-white/10 trans rounded p-1"

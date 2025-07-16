@@ -1,8 +1,8 @@
 import { SignJWT, jwtVerify } from "jose";
 import { JWTPayload } from "jose";
-import { JWT_SECRET } from "@/config/env";
 
-const SECRET =  new TextEncoder().encode(JWT_SECRET || 'MY SECRET CODE')
+
+const SECRET =  new TextEncoder().encode(process.env.JWT_SECRET || 'MY SECRET CODE')
 
 const alg = 'HS256'
 export async function generateToken(payload: JWTPayload){

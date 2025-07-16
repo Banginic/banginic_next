@@ -107,19 +107,19 @@ export const mainNavlinks = [
 
 ]
 export const adminNavlinks = [
-  {label:"Messages", href: "/services", icon:services_photo},
-  {label:"Projects", href: "/projects", icon:projects_photo},
-  {label:"Employees", href: "/about-us", icon:about_us},
-  {label:"Newsletter", href: "/contact-us", icon:contact_us},
+   {label:"Projects", href: "/admin/projects", icon:projects_photo},
+  {label:"Messages", href: "/admin/message", icon:about_us},
+  {label:"News", href: "/admin/news", icon:contact_us},
+  {label:"Employees", href: "/admin/employees", icon:tutorial},
+  {label:"Jobs", href: "/admin/jobs", icon:open_source},
 
 ]
 export const adminSidelinks = [
-  {label:"Services", href: "/services", icon:services_photo},
-  {label:"Projects", href: "/projects", icon:projects_photo},
-  {label:"About", href: "/about-us", icon:about_us},
-  {label:"Contact", href: "/contact-us", icon:contact_us},
-  {label:"Classes", href: "/learning", icon:tutorial},
-  {label:"Assets", href: "/learning-assets", icon:open_source},
+  {label:"Projects", href: "/admin/projects", icon:projects_photo},
+  {label:"Messages", href: "/admin/message", icon:about_us},
+  {label:"News", href: "/admin/news", icon:contact_us},
+  {label:"Employees", href: "/admin/employees", icon:tutorial},
+  {label:"Jobs", href: "/admin/jobs", icon:open_source},
 ]
 export const mainSidelinks = [
   {label:"Services", href: "/services", icon:services_photo},

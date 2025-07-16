@@ -9,6 +9,13 @@ import React, {
 import { WorkContext } from "./WorkProvider";
 import { useRouter } from "next/navigation";
 
+type UserType = {
+  id: number,
+  name: string,
+  email: string,
+  password?: string,
+  isAdmin: boolean
+}
 export interface AppContextType {
   setShowSidebar: React.Dispatch<React.SetStateAction<boolean>>;
   toggleSideBar(): void;
@@ -18,8 +25,8 @@ export interface AppContextType {
   // toggleTheme(): void;
   showNavbar: boolean;
   showSidebar: boolean;
-  user: string | null;
-  setUser: React.Dispatch<React.SetStateAction<string | null>>;
+  user: UserType | null;
+  setUser: React.Dispatch<React.SetStateAction<UserType | null>>;
   router: ReturnType<typeof useRouter>;
   lang: string;
   setLang: React.Dispatch<React.SetStateAction<string>>;
@@ -31,6 +38,7 @@ export interface AppContextType {
   showAdminNavbar: boolean
 }
 
+
 export const AppContext = createContext<AppContextType | undefined>(undefined);
 
 type PropsType = {
@@ -41,7 +49,7 @@ function AppProvider({ children }: PropsType) {
   const router = useRouter();
 
   const workContext = useContext(WorkContext);
-  const [user, setUser] = useState<string | null>(
+  const [user, setUser] = useState<UserType | null>(
     null
   );
   const [showNavbar, setShowNavbar] = useState(false);
@@ -54,46 +62,15 @@ function AppProvider({ children }: PropsType) {
   const [adminSidebar, setAdminSidebar] = useState(false);
   const [toggleNavbar, setToggleNavbar] = useState(false);
   const [theme, setTheme] = useState<"dark" | "light" | string>("");
-  const [token, setToken] = useState(
-    () => localStorage.getItem("token") || null
-  );
+
   const [lang, setLang] = useState("EN");
 
-  // const storedTheme = localStorage.getItem("theme");
-  // const preferedTheme = window.matchMedia(
-  //   "(prefers-color-scheme: dark)"
-  // ).matches;
-
-  // //  CHECK FOR PREFERS THEME
-  // function themeFunction() {
-  //   document.documentElement.classList.toggle(
-  //     "dark",
-  //     storedTheme === "dark" || (!storedTheme && preferedTheme)
-  //   );
-  // }
-  // function toggleTheme() {
-  //   if (storedTheme && storedTheme === "dark") {
-  //     setTheme("light");
-  //     localStorage.removeItem("theme");
-  //     localStorage.setItem("theme", "light");
-  //     document.documentElement.classList.toggle("dark");
-  //   } else {
-  //     setTheme("dark");
-  //     localStorage.setItem("theme", "dark");
-  //     document.documentElement.classList.toggle("dark");
-  //   }
-  // }
-
-  // useEffect(() => {
-  //   themeFunction();
-  // }, []);
-
-  // //  STORE THEME TO LOCAL STORAGE ON CHANGE
-  // useEffect(() => {
-  //   const currentTheme = localStorage.getItem("theme");
-  //   currentTheme ? setTheme(currentTheme) : setTheme("dark");
-  // }, [theme]);
-
+function seedUser(){
+  const isUserAvailable = localStorage.getItem('user')
+  if(isUserAvailable){
+    setUser(JSON.parse(isUserAvailable))
+  }
+}
   function toggleSideBar() {
     setShowSidebar(!showSidebar);
   }
@@ -126,6 +103,12 @@ function AppProvider({ children }: PropsType) {
     }
   }, [toggleNavbar]);
 
+  useEffect(() => {
+   seedUser()
+
+   return () =>{}
+  },[])
+
   const values = {
     showSidebar,
     setShowSidebar,
@@ -138,8 +121,6 @@ function AppProvider({ children }: PropsType) {
     user,
     setUser,
     router,
-    token,
-    setToken,
     lang,
     setLang,
     mainSidebar, setMainSidebar,

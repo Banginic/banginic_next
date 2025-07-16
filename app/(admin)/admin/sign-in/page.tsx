@@ -61,6 +61,7 @@ function Login() {
         localStorage.setItem("user", JSON.stringify(data.data[0]));
         setUser(data.data[0]);
         setFormData({ name: "", email: "", password: "" });
+        toast.success(data.data[0].message)
         return router.push("/admin");
       }
       setError(data.error);

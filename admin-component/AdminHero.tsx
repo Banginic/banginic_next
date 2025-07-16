@@ -35,6 +35,7 @@ function AdminHero() {
       <section>
         <p className="bg-green-100/20 p-4 rounded shadow mt-12 text-green-300">Hello Admin! <br/> Your website is perfoming smoothly.</p>
       </section>
+      
     </div>
   );
 }

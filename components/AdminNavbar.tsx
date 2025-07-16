@@ -2,14 +2,9 @@
 import React, { useContext } from "react";
 import Link from "next/link";
 import { AppContext } from "@/context/AppProvider";
-import {
-  Hamburger,
-  Logo,
-  Navlinks,
-  Sidebar,
-
-} from "./exportComp";
-import { adminNavlinks, adminSidelinks, mainSidelinks } from "@/assets/data";
+import { Hamburger, Logo, Navlinks, Sidebar, User } from "./exportComp";
+import { adminNavlinks, adminSidelinks } from "@/assets/data";
+import { AdminUser } from "@/admin-component/index";
 
 function AdminNavbar() {
   const { adminSidebar, setAdminSidebar, user } = useContext(AppContext)!;
@@ -21,13 +16,15 @@ function AdminNavbar() {
         </Link>
         <Navlinks navlinks={adminNavlinks} />
         <div
-          className={`${user ? "hidden" : "flex"}  items-center gap-2 lg:gap-4`}
+          className={`${!user ? "hidden" : "flex"}  items-center gap-2 lg:gap-4`}
         >
-         
-          <Link href="/contact-us" className="hidden md:block">
-           <button className="bg-accent px-6 py-2 rounded-full cursor-pointer hover:scale-x-105 trans">Login</button>
-          </Link>
-          <Hamburger isSidebarOpen={adminSidebar} setSidebar={setAdminSidebar} />
+          <div className="hidden md:block">
+            <User signInRoute="/admin/sign-in" homeRoute="/admin" />
+          </div>
+          <Hamburger
+            isSidebarOpen={adminSidebar}
+            setSidebar={setAdminSidebar}
+          />
         </div>
       </nav>
       <Sidebar

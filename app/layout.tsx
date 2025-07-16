@@ -3,6 +3,7 @@ import "./globals.css";
 import "./my_css.css";
 import Footer from "@/components/Footer";
 import { Outfit, Montserrat } from 'next/font/google'
+import { ToastContainer } from "react-toastify";
 
 const outfit = Outfit({
   subsets: ['latin'],
@@ -39,7 +40,7 @@ export default function RootLayout({
       <body
         className={`relative min-h-screen bg-gradient-to-br  from-slate-900 via-purple-900 to-slate-900 text-white 
          `}
-      >
+      ><ToastContainer />
         {children}
         <Footer />
       </body>
