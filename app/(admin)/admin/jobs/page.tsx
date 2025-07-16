@@ -1,11 +1,108 @@
-import React from 'react'
+"use client";
+import { AppContext } from "@/context/AppProvider";
+import React, { useContext } from "react";
+import { Dialogue, JobForm } from "@/admin-component/index";
+import { useMyQuery } from "@/hooks/useQuery";
+import { Loading } from "@/components/exportComp";
+import Link from "next/link";
 
-function Jobs() {
-  return (
-    <div>
-      jobs
-    </div>
-  )
+interface JobTypes {
+  success: boolean;
+  message?: string;
+  error?: string;
+  data?:
+    | {
+        id: number;
+        title: string;
+        location: string;
+        description: string;
+        createdAt: Date;
+        latestDate: Date | string;
+      }[]
+    | [];
 }
 
-export default Jobs
+function Jobs() {
+  const { setJobForm, showJobForm } = useContext(AppContext)!;
+
+  async function getJobs(): Promise<JobTypes> {
+    const response = await fetch("/api/jobs/list-jobs", {
+      method: "GET",
+      headers: { "Content-Type": "application/json" },
+      credentials: "include",
+    });
+    return await response.json();
+  }
+
+  const { isLoading, isError, data, refetch } = useMyQuery("jobs", getJobs);
+
+  return (
+    <div className="relative">
+      <h1 className="text-pink-400 text-2xl lg:text-4xl text-center font-semibold">
+        JOBS
+      </h1>
+      <div className="w-sm mx-auto mt-8">
+        <button
+          onClick={() => setJobForm(true)}
+          className="border border-green-200 hover:scale-x-105 text-green-200 px-4 py-2 rounded cursor-pointer"
+        >
+          Create Job
+        </button>
+      </div>
+      <section className="  mt-4  shadow w-sm rounded mx-auto ">
+        {isLoading && <Loading />}
+
+        {isError && (
+          <div className=" grid place-items-center text-center ">
+            <div>
+              <h2 className="heading3">Error Fetching Jobs</h2>
+              <p>Please try again later</p>
+              <button
+                className="bg-accent hover:opacity/60 mt-1 px-4 py-1 rounded cursor-pointer"
+                onClick={() => refetch()}
+              >
+                Retry now
+              </button>
+            </div>
+          </div>
+        )}
+        {!data ||
+          (Array.isArray(data?.data) && data.data.length === 0 && (
+            <div className=" grid place-items-center text-center mt-32">
+              <h1>{data?.message}</h1>
+            </div>
+          ))}
+        {data &&
+          Array.isArray(data.data) &&
+          data.data.length > 0 &&
+          !isLoading &&
+          data.data.map((item) => (
+            <Link
+              href={`/admin/jobs/${item.id}`}
+              key={item.id}
+              className="px-4 py-8 rounded border border-pink-100/20 shadow grid grid-cols-3 gap-1 mt-2 hover:bg-black/20 "
+            >
+              <div className="">
+                <p className="text-neutral-300">Title</p>
+                <p>{item.title}</p>
+              </div>
+              <div className="">
+                <p className="text-neutral-300">Location</p>
+                <p className=" ">{item.location}</p>
+              </div>
+              <div className="">
+                <p className="text-neutral-300">Latest date</p>
+                <p className="text-red-500 ">{item.latestDate}</p>
+              </div>
+            </Link>
+          ))}
+      </section>
+
+      <Dialogue isDialogOpen={showJobForm} closeDialog={setJobForm}>
+        <JobForm closeDialog={setJobForm} />
+      </Dialogue>
+    </div>
+  );
+}
+
+export default Jobs;

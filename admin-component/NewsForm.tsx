@@ -18,6 +18,8 @@ function NewsForm({
   closeDialog: React.Dispatch<React.SetStateAction<boolean>>;
 }) {
   const [formData, setFormData] = useState({ subject: "", message: "" });
+  const [error, setError] = useState("");
+  
   async function postNews() {
     const response = await fetch("/api/news/create-news", {
       body: JSON.stringify(formData),
@@ -27,18 +29,20 @@ function NewsForm({
     });
     return await response.json();
   }
-
+  function clearForm() {
+    setFormData({ subject: "", message: "" });
+  }
   const { isPending, isError, mutate } = useMyMutate<NewsTypes>(
     "news",
     postNews,
-    closeDialog
+    clearForm,
+    setError
   );
-  const error = isError ? "Error posting news." : "";
 
   async function handleSubmit(e: FormEvent) {
     e.preventDefault();
     mutate();
-    setTimeout(() => setFormData({ subject: "", message: "" }), 10000)
+    setTimeout(() => setFormData({ subject: "", message: "" }), 10000);
   }
   return (
     <form onSubmit={handleSubmit} className="w-sm mb-8">

@@ -65,3 +65,13 @@ success: boolean;
     features: string[];
     image: string
 }
+
+type SuccessResponse = { success: boolean; message: string; };
+type ErrorResponse = { success: boolean; error:string };
+
+export type ApiResponse = {
+  success: boolean;
+  message?: string;
+  error?: string;
+  data?: any;
+}

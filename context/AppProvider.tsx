@@ -39,6 +39,8 @@ export interface AppContextType {
 
   showNewsForm: boolean;
   setNewsForm: React.Dispatch<React.SetStateAction<boolean>>;
+  showJobForm: boolean;
+  setJobForm: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 export const AppContext = createContext<AppContextType | undefined>(undefined);
@@ -65,6 +67,7 @@ function AppProvider({ children }: PropsType) {
   const [lang, setLang] = useState("EN");
 
   const [showNewsForm, setNewsForm] = useState(false);
+  const [showJobForm, setJobForm] = useState(false);
 
   function seedUser() {
     const isUserAvailable = localStorage.getItem("user");
@@ -130,7 +133,8 @@ function AppProvider({ children }: PropsType) {
     setAdminSidebar,
     showMainNavbar,
     showAdminNavbar,
-    showNewsForm, setNewsForm
+    showNewsForm, setNewsForm,
+    showJobForm, setJobForm
   };
   return <AppContext.Provider value={values}>{children}</AppContext.Provider>;
 }

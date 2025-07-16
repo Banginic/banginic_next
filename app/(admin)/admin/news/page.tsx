@@ -2,7 +2,7 @@
 import { NewsForm, Dialogue } from "@/admin-component/index";
 import { AppContext } from "@/context/AppProvider";
 import React, { useContext } from "react";
-import { useMyMutate, useMyQuery } from "@/hooks/useQuery";
+import { useMyQuery } from "@/hooks/useQuery";
 import { Loading } from "@/components/exportComp";
 import { useMutation } from "@tanstack/react-query";
 import { toast } from "react-toastify";
@@ -12,16 +12,18 @@ interface NewsTypes {
   success: boolean;
   message?: string;
   error?: string;
-  data?: {
-    id: number;
-    subject: string;
-    body: string;
-  }[];
+  data?:
+    | {
+        id: number;
+        subject: string;
+        body: string;
+      }[]
+    | [];
 }
 
 function News() {
   const { showNewsForm, setNewsForm } = useContext(AppContext)!;
-  async function deleteNews(id: string) {
+  async function deleteNews(id: number) {
     const response = await fetch(`/api/news/delete-news?newsId=${id}`, {
       method: "DELETE",
       headers: { "Content-Type": "application/json" },
@@ -30,8 +32,8 @@ function News() {
     return await response.json();
   }
 
-  async function getNews() {
-    const response = await fetch("/api/list-news", {
+  async function getNews(): Promise<NewsTypes> {
+    const response = await fetch("/api/news/list-news", {
       method: "GET",
       headers: { "Content-Type": "application/json" },
       credentials: "include",
@@ -39,22 +41,26 @@ function News() {
     return await response.json();
   }
   const { isLoading, isError, data, refetch } = useMyQuery("news", getNews);
-  const { isPending, isError: mutateError, mutate } = useMutation({
+  const {
+    isPending,
+    isError: mutateError,
+    mutate,
+  } = useMutation({
     mutationFn: deleteNews,
-     onSuccess: (data) => {
-          if (data.success) {
-            toast.success(data?.message);
-            client.invalidateQueries({ queryKey: ['news']})
-             return
-          }
-        },
-        onError: (error: unknown) => {
-          if (error instanceof Error) {
-            toast.error(error.message);
-          }
-          toast.error("Error posting data.");
-        },
-  })
+    onSuccess: (data) => {
+      if (data.success) {
+        toast.success(data?.message);
+        client.invalidateQueries({ queryKey: ["news"] });
+        return;
+      }
+    },
+    onError: (error: unknown) => {
+      if (error instanceof Error) {
+        toast.error(error.message);
+      }
+      toast.error("Error posting data.");
+    },
+  });
 
   return (
     <div className="relative">
@@ -70,9 +76,9 @@ function News() {
         </button>
       </div>
       <section className="  mt-4  shadow w-sm rounded mx-auto ">
-        {isLoading || isPending && <Loading />}
-        {isError || mutateError ||
-          (!data && (
+        {isLoading || (isPending && <Loading />)}
+        {isError ||
+          (mutateError && (
             <div className=" grid place-items-center text-center ">
               <div>
                 <h2 className="heading3">Error Fetching News</h2>
@@ -86,17 +92,18 @@ function News() {
               </div>
             </div>
           ))}
-        {!data || data?.data.length === 0 && (
-          <div className=" grid place-items-center text-center mt-32">
-            <h1>{data.message}</h1>
-          </div>
-        )}
-        {data?.data.length > 0 &&
-          data?.data.map((item) => (
-            <article
-              key={item.id}
-              className="px-4 py-8 rounded border"
-            >
+        {!data ||
+          (Array.isArray(data?.data) && data.data.length === 0 && (
+            <div className=" grid place-items-center text-center mt-32">
+              <h1>{data?.message}</h1>
+            </div>
+          ))}
+        {data &&
+          Array.isArray(data.data) &&
+          data.data.length > 0 &&
+          (!isPending || !isLoading) &&
+          data.data.map((item) => (
+            <article key={item.id} className="px-4 py-8 rounded border">
               <div className="flex gap-4">
                 <p className="text-neutral-300">Subject:</p>
                 <p>{item.subject}</p>

@@ -3,7 +3,7 @@ import React from 'react'
 function loading() {
   return (
     <div>
-       Loading..... news skeleton
+       Loading..... jobs skeleton
     </div>
   )
 }
