@@ -10,12 +10,12 @@ import { WorkContext } from "./WorkProvider";
 import { useRouter } from "next/navigation";
 
 type UserType = {
-  id: number,
-  name: string,
-  email: string,
-  password?: string,
-  isAdmin: boolean
-}
+  id: number;
+  name: string;
+  email: string;
+  password?: string;
+  isAdmin: boolean;
+};
 export interface AppContextType {
   setShowSidebar: React.Dispatch<React.SetStateAction<boolean>>;
   toggleSideBar(): void;
@@ -34,10 +34,12 @@ export interface AppContextType {
   setMainSidebar: React.Dispatch<React.SetStateAction<boolean>>;
   adminSidebar: boolean;
   setAdminSidebar: React.Dispatch<React.SetStateAction<boolean>>;
-  showMainNavbar: boolean
-  showAdminNavbar: boolean
-}
+  showMainNavbar: boolean;
+  showAdminNavbar: boolean;
 
+  showNewsForm: boolean;
+  setNewsForm: React.Dispatch<React.SetStateAction<boolean>>;
+}
 
 export const AppContext = createContext<AppContextType | undefined>(undefined);
 
@@ -49,28 +51,27 @@ function AppProvider({ children }: PropsType) {
   const router = useRouter();
 
   const workContext = useContext(WorkContext);
-  const [user, setUser] = useState<UserType | null>(
-    null
-  );
+  const [user, setUser] = useState<UserType | null>(null);
   const [showNavbar, setShowNavbar] = useState(false);
   const [showSidebar, setShowSidebar] = useState<boolean>(false);
 
   const [mainSidebar, setMainSidebar] = useState(false);
   const [showMainNavbar, setMainNavbar] = useState(false);
-  
+
   const [showAdminNavbar, setAdminNavbar] = useState(false);
   const [adminSidebar, setAdminSidebar] = useState(false);
   const [toggleNavbar, setToggleNavbar] = useState(false);
   const [theme, setTheme] = useState<"dark" | "light" | string>("");
-
   const [lang, setLang] = useState("EN");
 
-function seedUser(){
-  const isUserAvailable = localStorage.getItem('user')
-  if(isUserAvailable){
-    setUser(JSON.parse(isUserAvailable))
+  const [showNewsForm, setNewsForm] = useState(false);
+
+  function seedUser() {
+    const isUserAvailable = localStorage.getItem("user");
+    if (isUserAvailable) {
+      setUser(JSON.parse(isUserAvailable));
+    }
   }
-}
   function toggleSideBar() {
     setShowSidebar(!showSidebar);
   }
@@ -104,10 +105,10 @@ function seedUser(){
   }, [toggleNavbar]);
 
   useEffect(() => {
-   seedUser()
+    seedUser();
 
-   return () =>{}
-  },[])
+    return () => {};
+  }, []);
 
   const values = {
     showSidebar,
@@ -123,9 +124,13 @@ function seedUser(){
     router,
     lang,
     setLang,
-    mainSidebar, setMainSidebar,
-    adminSidebar, setAdminSidebar,
-    showMainNavbar, showAdminNavbar
+    mainSidebar,
+    setMainSidebar,
+    adminSidebar,
+    setAdminSidebar,
+    showMainNavbar,
+    showAdminNavbar,
+    showNewsForm, setNewsForm
   };
   return <AppContext.Provider value={values}>{children}</AppContext.Provider>;
 }

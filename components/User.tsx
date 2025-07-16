@@ -31,7 +31,7 @@ function User({
 
   return (
     <section className="text-center p-2 rounded  ">
-      {localStorage.getItem("user") ? (
+      {appContext?.user ? (
         <div className="flex flex-col items-center gap-2  py-2 ">
           <div className="md:hidden">
             <Image

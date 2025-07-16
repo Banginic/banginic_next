@@ -31,6 +31,7 @@ function Login() {
     async function postForm(endpoint: string) {
       const res = await fetch(endpoint, {
         method: "POST",
+        credentials: 'include',
         body: JSON.stringify(formData),
         headers: { "Content-Type": "application/json" },
       });
