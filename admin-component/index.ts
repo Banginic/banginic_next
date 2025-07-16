@@ -7,3 +7,6 @@ export { default as NewsForm } from './NewsForm'
 export { default as ProjectForm } from './ProjectForm'
 export { default as AdminUser } from './AdminUser'
 export { default as Dialogue } from './Dialogue'
+
+export { default as FetchError } from './FetchingError'
+export { default as NoDataAvailable } from './NoDataAvailable'

@@ -7,19 +7,7 @@ import { Loading } from "@/components/exportComp";
 import { useMutation } from "@tanstack/react-query";
 import { toast } from "react-toastify";
 import { client } from "@/components/userClient";
-
-interface NewsTypes {
-  success: boolean;
-  message?: string;
-  error?: string;
-  data?:
-    | {
-        id: number;
-        subject: string;
-        body: string;
-      }[]
-    | [];
-}
+import { NewsTypes } from "@/models/types";
 
 function News() {
   const { showNewsForm, setNewsForm } = useContext(AppContext)!;

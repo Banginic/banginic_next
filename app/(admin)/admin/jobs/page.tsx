@@ -5,22 +5,7 @@ import { Dialogue, JobForm } from "@/admin-component/index";
 import { useMyQuery } from "@/hooks/useQuery";
 import { Loading } from "@/components/exportComp";
 import Link from "next/link";
-
-interface JobTypes {
-  success: boolean;
-  message?: string;
-  error?: string;
-  data?:
-    | {
-        id: number;
-        title: string;
-        location: string;
-        description: string;
-        createdAt: Date;
-        latestDate: Date | string;
-      }[]
-    | [];
-}
+import { JobTypes } from "@/models/types";
 
 function Jobs() {
   const { setJobForm, showJobForm } = useContext(AppContext)!;
@@ -69,7 +54,7 @@ function Jobs() {
         {!data ||
           (Array.isArray(data?.data) && data.data.length === 0 && (
             <div className=" grid place-items-center text-center mt-32">
-              <h1>{data?.message}</h1>
+              <h1>{data?.error}</h1> 
             </div>
           ))}
         {data &&
@@ -92,7 +77,7 @@ function Jobs() {
               </div>
               <div className="">
                 <p className="text-neutral-300">Latest date</p>
-                <p className="text-red-500 ">{item.latestDate}</p>
+                <p className="text-red-500 ">{'item.latestDate'}</p>
               </div>
             </Link>
           ))}

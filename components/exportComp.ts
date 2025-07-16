@@ -22,7 +22,7 @@ export {default as Hero} from "./home/Hero";
 // export { default as useTitle } from '../hooks/useTitle'
 
 // COMPONENT
-// export { default as Back} from "./Back"
+export { default as Back} from "./Back"
 export {default as Sidebar} from "./Sidebar";
 export { default as SocialLinks } from './SocialLinks'
 export { default as Logo } from './Logo'

@@ -73,5 +73,27 @@ export type ApiResponse = {
   success: boolean;
   message?: string;
   error?: string;
-  data?: any;
+  
+}
+
+export interface JobTypes extends ApiResponse {
+  data?:
+    | {
+        id: number;
+        title: string;
+        location: string;
+        description: string;
+        createdAt: Date;
+        latestDate: Date | string;
+      }[]
+    | [];
+}
+export interface NewsTypes extends ApiResponse {
+  data?:
+    | {
+        id: number;
+        subject: string;
+        body: string;
+      }[]
+    | [];
 }

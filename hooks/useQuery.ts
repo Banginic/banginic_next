@@ -8,8 +8,8 @@ import { ApiResponse } from '@/models/types'
 export function useMyMutate<T extends ApiResponse>(
   queryKey: string,
   queryFn: () => Promise<T>,
-  clearForm: () => void,
   setError: React.Dispatch<React.SetStateAction<string>>,
+  clearForm?: () => void,
 ) {
   return useMutation<T>({
     mutationFn: queryFn,
@@ -17,12 +17,13 @@ export function useMyMutate<T extends ApiResponse>(
       if (data.success) {
         toast.success(data?.message);
         client.invalidateQueries({ queryKey: [queryKey] });
-        clearForm()
+        if( clearForm){
+          clearForm()
+        }
         return;
       }
-      if(!data.success){
-        setError(data?.error)
-      }
+     setError(data?.error)
+      
     },
     onError: (error: unknown) => {
       if (error instanceof Error) {
