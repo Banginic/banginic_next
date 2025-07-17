@@ -7,7 +7,7 @@ export async function GET(){
     .from(messageTable)
 
     if(messages.length === 0){
-        return NextResponse.json({ success: true, message: 'No Message available', data:messages}, { status: 200})
+        return NextResponse.json({ success: true, message: 'No Message Available', data:messages}, { status: 200})
     }
     return NextResponse.json({ message: '', success: true, data:messages})
 }

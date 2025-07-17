@@ -1,0 +1,1 @@
+ALTER TABLE "newsletter_subscribers" ADD COLUMN "consent" boolean DEFAULT true NOT NULL;

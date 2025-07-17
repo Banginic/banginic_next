@@ -46,7 +46,7 @@ function MessageDetails({
     setError,
     clearForm
   );
-console.log(data)
+
   return (
     <div className="relative pb-12">
       <div className="absolute top-8 left-2">

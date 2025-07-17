@@ -18,7 +18,7 @@ export async function GET(req: Request) {
 
   if (message.length === 0) {
     return NextResponse.json(
-      { success: true, message: "No Message available with this ID", data: message }
+      { success: true, message: "No Message Available   ith this ID", data: message }
      
     );
   }

@@ -5,17 +5,17 @@ import { toast } from "react-toastify";
 import type { FormEvent } from "react";
 
 function NewsletterForm() {
-  const baseUrl = ''
+
   const [isLoading, setLoading] = useState(false);
   const [newSignee, setNewSignee] = useState({
-    fullName: "",
+  
     email: "",
     checkbox: false,
   });
 
   function clearForm() {
     setNewSignee({
-      fullName: "",
+   
       email: "",
       checkbox: false,
     });
@@ -24,10 +24,9 @@ function NewsletterForm() {
   async function handleSubmit(event: FormEvent) {
     event?.preventDefault();
     setLoading(true);
-    const body = { emailAddress: newSignee.email };
+    const body = { email: newSignee.email };
     try {
-      const { data } = await axios.post(
-        baseUrl + "/api/v2/newsletters-subscription/create",
+      const { data } = await axios.post("/api/newsletters-subscribers/subscribe-newsletter",
         body
       );
 
@@ -86,7 +85,7 @@ function NewsletterForm() {
           htmlFor="checkbox"
           className="opacity-80 text-sm cursor-pointer text-gray-500"
         >
-          I agree to the terms and conditions
+          I agree to terms and conditions.
         </label>
       </div>
       <button

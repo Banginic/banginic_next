@@ -6,10 +6,11 @@ import { eq } from "drizzle-orm";
 
 
 export async function POST(req: Request) {
+
   const body = await req.json();
-  console.log(body)
-  const { email, consent } = body;
-  if (!email || !consent) {
+
+  const { email} = body;
+  if (!email ) {
     return NextResponse.json(
       { message: "All fields are required", success: false },
       { status: 400 }
@@ -24,7 +25,7 @@ export async function POST(req: Request) {
   if (existInDB.length === 1) {
     return NextResponse.json(
       { success: false, message: "Already Subscribed" },
-      { status: 400 }
+      { status: 200 }
     );
   }
 

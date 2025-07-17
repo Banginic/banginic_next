@@ -107,4 +107,13 @@ export interface MessagesType extends ApiResponse{
     service: string;
     message: string
     createdAt: Date
-  }[] | []}
+  }[] | []};
+
+  export interface NewsletterSubsTypes extends ApiResponse {
+    data: {
+      id: number;
+      email: string;
+      consent: boolean;
+      createdAt: Date
+    }[] | []
+  }

@@ -7,7 +7,7 @@ export async function GET(){
     .from(newsletterSubscribersTable)
 
     if(news.length === 0){
-        return NextResponse.json({ success: true, message: 'No Subscribers available', data:news}, { status: 404})
+        return NextResponse.json({ success: true, message: 'No Subscribers Available', data:news}, { status: 200})
     }
     return NextResponse.json({ message: '', success: true, data:news})
 }
