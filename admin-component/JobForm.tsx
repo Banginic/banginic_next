@@ -49,8 +49,8 @@ function JobForm({
   const { isPending, isError, mutate } = useMyMutate <JobTypes>(
     "jobs",
     postJob,
-    clearForm,
-    setError
+    setError,
+    clearForm
   );
 
   async function handleSubmit(e: FormEvent) {
