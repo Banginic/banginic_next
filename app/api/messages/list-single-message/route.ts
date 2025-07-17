@@ -18,8 +18,8 @@ export async function GET(req: Request) {
 
   if (message.length === 0) {
     return NextResponse.json(
-      { success: false, error: "No Message available with this ID", data: [] },
-      { status: 1 }
+      { success: true, message: "No Message available with this ID", data: message }
+     
     );
   }
   return NextResponse.json({ message: "", success: true, data: message });

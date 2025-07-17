@@ -18,7 +18,6 @@ function Messages() {
     "messages",
     fetchMessages
   );
-
   return (
     <div>
       <h1 className="text-pink-400 text-2xl lg:text-4xl text-center font-semibold lg:mt-4">
@@ -28,11 +27,11 @@ function Messages() {
       <section className="  mt-4  shadow w-[95%] lg:w-2xl rounded mx-auto ">
         {isLoading && <Loading />}
 
-        {isError && <FetchError message="Messages" refetch={refetch} />}
-        {!data ||
+        {
           (Array.isArray(data?.data) && data.data.length === 0 && data.message && (
-            <NoDataAvailable message={data.error || data.message} />
+            <NoDataAvailable message={data.message} />
           ))}
+          {isError && <FetchError message="Messages" refetch={refetch} />}
         {data &&
           Array.isArray(data.data) &&
           data.data.length > 0 &&

@@ -27,11 +27,11 @@ function MessageDetails({
     return data;
   }
   function clearForm() {
-    router.push("/admin/messages");
+    router.push("/admin/message");
   }
 
   async function deleteMessage(): Promise<MessagesType> {
-     const { data } = await axios.delete(
+    const { data } = await axios.delete(
       `/api/messages/delete-single-message?messageId=${messageId}`,
       {
         withCredentials: true,
@@ -39,15 +39,16 @@ function MessageDetails({
     );
     return data;
   }
-  const { isLoading, isError, data, refetch } = useMyQuery("jobs", getMessage);
-  const {
-    isPending,
-    isError: deleteError,
-    mutate,
-  } = useMyMutate("jobs", deleteMessage, setError, clearForm);
-
+  const { isLoading, isError, data, refetch } = useMyQuery("messages", getMessage);
+  const { isPending, mutate } = useMyMutate(
+    "messages",
+    deleteMessage,
+    setError,
+    clearForm
+  );
+console.log(data)
   return (
-    <div className="relative ">
+    <div className="relative pb-12">
       <div className="absolute top-8 left-2">
         <Back link="/admin/message" name="Back" />
       </div>
@@ -56,46 +57,53 @@ function MessageDetails({
       </h1>
 
       <section className="  mt-12  shadow w-sm rounded mx-auto ">
-        {isLoading || (isPending && <Loading />)}
+        {(isLoading || isPending) && <Loading />}
 
-        {isError ||
-          (deleteError && <FetchError message="Message" refetch={refetch} />)}
-        {!data ||
-          (Array.isArray(data?.data) && data.data.length === 0 && (
+        {
+          (Array.isArray(data?.data) && data.data.length === 0 && data.message && (
             <NoDataAvailable message={data?.message || error} />
           ))}
+
+        {isError && <FetchError message="Message" refetch={refetch} />}
+     
         {data &&
           Array.isArray(data.data) &&
           data.data.length > 0 &&
-          (!isLoading || isPending) && (
+          (!isPending || !isLoading) && (
             <article className="px-4 py-8 rounded border border-pink-100/20 shadow flex flex-col gap-2 mt-2 bg-black/20 ">
               <div className="">
-                <p className="text-neutral-300">Title</p>
-                <p>{data.data[0].title}</p>
+                <p className="text-neutral-300">Sender</p>
+                <p>{data.data[0].name}</p>
               </div>
               <div className="">
-                <p className="text-neutral-300">Location</p>
-                <p className=" ">{data.data[0].location}</p>
+                <p className="text-neutral-300">Email</p>
+                <p className=" ">{data.data[0].email}</p>
+              </div>
+              <div className="">
+                <p className="text-neutral-300">Phone</p>
+                <p className="">{data.data[0].phone}</p>
+              </div>
+              <div className="">
+                <p className="text-neutral-300">Subject</p>
+                <p className="text-green-400">{data.data[0].service}</p>
               </div>
               <div className="">
                 <p className="text-neutral-300">Latest date</p>
-                <p className="text-green-500 ">{"data.data[0].createdAt"}</p>
+                <p className="text-red-500 ">
+                  {new Date(data.data[0].createdAt).toLocaleDateString("en-GB")}
+                </p>
               </div>
               <div className="">
-                <p className="text-neutral-300">Latest date</p>
-                <p className="text-red-500 ">{"data.data[0].createdAt"}</p>
-              </div>
-              <div className="">
-                <p className="text-neutral-300">Description</p>
+                <p className="text-neutral-300">Message</p>
                 <p className="p-2 rounded bg-black/20 mt-1">
-                  {data.data[0].description}
+                  {data.data[0].message}
                 </p>
               </div>
               <button
                 onClick={() => mutate()}
-                className="border rounded w-32 mt-8 hover:scale-105 trans cursor-pointer text-red-100 border-red-500 px-4 py-2"
+                className="border rounded w-40 mt-8 hover:scale-105 trans cursor-pointer text-red-100 border-red-500 px-4 py-2"
               >
-                Delete Job
+                Delete Message
               </button>
             </article>
           )}

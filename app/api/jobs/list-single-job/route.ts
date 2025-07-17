@@ -17,8 +17,8 @@ export async function GET(req: Request) {
 
   if (job.length === 0) {
     return NextResponse.json(
-      { success: false, error: "No Job available with this ID", data: [] },
-      { status: 1 }
+      { success: true, message: "No Job available with this ID", data: [] },
+      { status: 200 }
     );
   }
   return NextResponse.json({ message: "", success: true, data: job });

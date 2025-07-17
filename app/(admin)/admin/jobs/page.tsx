@@ -41,7 +41,7 @@ function Jobs() {
         {isError && <FetchError message="Jobs" refetch={refetch} />}
         {!data ||
           (Array.isArray(data?.data) && data.data.length === 0 && (
-            <NoDataAvailable message="Job" />
+            <NoDataAvailable message={'No Job Available'} />
           ))}
         {data &&
           Array.isArray(data.data) &&
