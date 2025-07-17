@@ -60,6 +60,7 @@ id: serial('id').primaryKey(),
 export const newsletterSubscribersTable = pgTable("newsletter_subscribers", {
  id: serial('id').primaryKey(),
   email: varchar("email", { length: 100 }).notNull().unique(),
+  consent: boolean().notNull().default(true),
   createdAt: timestamp("created_at").notNull().defaultNow(),
 });
 
