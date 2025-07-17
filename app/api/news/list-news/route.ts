@@ -7,7 +7,7 @@ export async function GET(){
     .from(newsTable)
 
     if(news.length === 0){
-        return NextResponse.json({ success: false, message: 'No News available', data:[]}, { status: 404})
+        return NextResponse.json({ success: true, message: 'No News available', data:[]}, { status: 200})
     }
     return NextResponse.json({ message: '', success: true, data:news})
 }

@@ -89,7 +89,7 @@ export interface JobTypes extends ApiResponse {
     | [];
 }
 export interface NewsTypes extends ApiResponse {
-  data?:
+  data:
     | {
         id: number;
         subject: string;
@@ -117,3 +117,4 @@ export interface MessagesType extends ApiResponse{
       createdAt: Date
     }[] | []
   }
+

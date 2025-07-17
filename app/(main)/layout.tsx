@@ -4,6 +4,7 @@ import React from "react";
 import AppProvider from "@/context/AppProvider";
 import { client } from "@/components/userClient";
 import { QueryClientProvider } from "@tanstack/react-query";
+import News from "@/components/News";
 
 function MainLayout({ children }: { children: React.ReactNode }) {
   return (
@@ -13,7 +14,7 @@ function MainLayout({ children }: { children: React.ReactNode }) {
           <div
             className={`relative min-h-screen bg-gradient-to-br  from-slate-900 via-purple-900 to-slate-900 text-white 
       `}
-          >
+          ><News />
             <Header />
             {children}
           </div>

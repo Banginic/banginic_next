@@ -15,6 +15,13 @@
       "when": 1752740907194,
       "tag": "0001_lying_forgotten_one",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1752750795732,
+      "tag": "0002_real_arachne",
+      "breakpoints": true
     }
   ]
 }

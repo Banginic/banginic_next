@@ -74,6 +74,7 @@ export const newsTable = pgTable("news", {
   id: serial('id').primaryKey(),
   subject: varchar("subject", { length: 100 }).notNull(),
   body: varchar("body", { length: 1000 }).notNull(),
+  createdAt: timestamp('created_at').defaultNow()
 });
 
 export const jobTable = pgTable("jobs", {
