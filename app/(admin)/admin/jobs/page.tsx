@@ -35,7 +35,7 @@ function Jobs() {
           Create Job
         </button>
       </div>
-      <section className="  mt-4  shadow w-sm rounded mx-auto ">
+      <section className="  mt-4  shadow w-[90%] lg:w-xl rounded mx-auto ">
         {isLoading && <Loading />}
 
         {isError && <FetchError message="Jobs" refetch={refetch} />}
@@ -51,7 +51,7 @@ function Jobs() {
             <Link
               href={`/admin/jobs/${item.id}`}
               key={item.id}
-              className="px-4 py-8 rounded border border-pink-100/20 shadow grid grid-cols-3 gap-1 mt-2 hover:bg-black/20 "
+              className="px-4 py-8 rounded border border-pink-100/20 bg-white/20 backdrop:blur-md shadow grid grid-cols-3 gap-1 mt-2 hover:bg-white/10 "
             >
               <div className="">
                 <p className="text-neutral-300">Title</p>

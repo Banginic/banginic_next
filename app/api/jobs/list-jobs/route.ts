@@ -7,7 +7,7 @@ export async function GET(){
     .from(jobTable)
 
     if(job.length === 0){
-        return NextResponse.json({ success: false, error: 'No Job available', data:[]}, { status: 404})
+        return NextResponse.json({ success: true, message: 'No Job available', data:[]}, { status: 200})
     }
     return NextResponse.json({ message: '', success: true, data:job})
 }

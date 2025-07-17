@@ -41,6 +41,8 @@ export interface AppContextType {
   setNewsForm: React.Dispatch<React.SetStateAction<boolean>>;
   showJobForm: boolean;
   setJobForm: React.Dispatch<React.SetStateAction<boolean>>;
+  showMainJobForm: boolean;
+  setMainJobForm: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 export const AppContext = createContext<AppContextType | undefined>(undefined);
@@ -68,6 +70,7 @@ function AppProvider({ children }: PropsType) {
 
   const [showNewsForm, setNewsForm] = useState(false);
   const [showJobForm, setJobForm] = useState(false);
+  const [showMainJobForm, setMainJobForm] = useState(true);
 
   function seedUser() {
     const isUserAvailable = localStorage.getItem("user");
@@ -134,7 +137,8 @@ function AppProvider({ children }: PropsType) {
     showMainNavbar,
     showAdminNavbar,
     showNewsForm, setNewsForm,
-    showJobForm, setJobForm
+    showJobForm, setJobForm,
+    showMainJobForm, setMainJobForm
   };
   return <AppContext.Provider value={values}>{children}</AppContext.Provider>;
 }
