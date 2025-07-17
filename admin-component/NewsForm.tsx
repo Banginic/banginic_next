@@ -35,8 +35,8 @@ function NewsForm({
   const { isPending, isError, mutate } = useMyMutate<NewsTypes>(
     "news",
     postNews,
-    clearForm,
-    setError
+    setError,
+    clearForm
   );
 
   async function handleSubmit(e: FormEvent) {
