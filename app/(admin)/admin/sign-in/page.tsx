@@ -1,5 +1,6 @@
 "use client";
 import { AppContext } from "@/context/AppProvider";
+import { div } from "framer-motion/client";
 import React, { ChangeEvent, FormEvent, useContext, useState } from "react";
 import { toast } from "react-toastify";
 
@@ -11,6 +12,7 @@ function Login() {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
+    phone: "",
     password: "",
   });
   function toggleState() {
@@ -31,7 +33,7 @@ function Login() {
     async function postForm(endpoint: string) {
       const res = await fetch(endpoint, {
         method: "POST",
-        credentials: 'include',
+        credentials: "include",
         body: JSON.stringify(formData),
         headers: { "Content-Type": "application/json" },
       });
@@ -41,31 +43,32 @@ function Login() {
     try {
       //    login state
       if (state === "Login") {
-        const data = await postForm("/api/sign-in");
+        const data = await postForm("/api/auth/sign-in");
         console.log(data);
         if (data.success) {
           toast.success(data.message);
           localStorage.setItem("user", JSON.stringify(data.data[0]));
           setUser(data.data[0]);
-          setFormData({ name: "", email: "", password: "" });
+          setFormData({ name: "", email: "", phone: "", password: "" });
           return router.push("/admin");
         }
-        setError(data.error);
+        setError(data.message);
         return;
       }
 
       // handle sign up...
-      const data = await postForm("/api/sign-up");
-      console.log(data);
+      const data = await postForm("/api/auth/sign-up");
+
       if (data.success) {
         toast.success(data.message);
         localStorage.setItem("user", JSON.stringify(data.data[0]));
         setUser(data.data[0]);
-        setFormData({ name: "", email: "", password: "" });
-        toast.success(data.data[0].message)
-        return router.push("/admin");
+        setFormData({ name: "", email: "", phone: "", password: "" });
+        toast.success(data.data[0].message);
+        router.push("/admin");
+        return
       }
-      setError(data.error);
+      setError(data.message);
       return;
     } catch (ex) {
       if (ex instanceof Error) {
@@ -77,7 +80,7 @@ function Login() {
     }
   }
   return (
-    <div className="h-screen grid place-items-center bg-blac">
+    <div className="min-h-screen grid place-items-center pb-12">
       <form
         onSubmit={handleSubit}
         className="border rounded border-pink-300/50 p-8 w-sm shadow bg-black/70 backdrop:blur-lg"
@@ -85,21 +88,39 @@ function Login() {
         <h1 className="text-2xl font-semibold text-center">{state}</h1>
         <div>
           {state === "Sign up" && (
-            <div className="mt-8 mb-4">
-              <label htmlFor="name" className="block mb-1">
-                Name
-              </label>
-              <input
-                type="text"
-                name="name"
-                value={formData.name}
-                onChange={handleChange}
-                required
-                autoComplete="name"
-                placeholder="Banginic admin"
-                maxLength={25}
-                className=" w-full border border-pink-300/50 rounded px-4 py-2 bg-transparent"
-              />
+            <div>
+              <div className="mt-8 mb-4">
+                <label htmlFor="name" className="block mb-1">
+                  Name
+                </label>
+                <input
+                  type="text"
+                  name="name"
+                  value={formData.name}
+                  onChange={handleChange}
+                  required
+                  autoComplete="name"
+                  placeholder="Banginic admin"
+                  maxLength={25}
+                  className=" w-full border border-pink-300/50 rounded px-4 py-2 bg-transparent"
+                />
+              </div>
+              <div className="mb-4">
+                <label htmlFor="phone" className="block mb-1">
+                  Phone
+                </label>
+                <input
+                  type="tel"
+                  name="phone"
+                  value={formData.phone}
+                  onChange={handleChange}
+                  required
+                  autoComplete="phone"
+                  placeholder="+1 (340) 324 2322"
+                  maxLength={25}
+                  className=" w-full border border-pink-300/50 rounded px-4 py-2 bg-transparent"
+                />
+              </div>
             </div>
           )}
         </div>
@@ -119,6 +140,7 @@ function Login() {
             className=" w-full border border-pink-300/50 rounded px-4 py-2 bg-transparent"
           />
         </div>
+
         <div className=" mb-4">
           <label htmlFor="password" className="block mb-1">
             Password

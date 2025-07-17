@@ -97,3 +97,14 @@ export interface NewsTypes extends ApiResponse {
       }[]
     | [];
 }
+
+export interface MessagesType extends ApiResponse{
+  data: {
+    id: number;
+    name: string;
+    phone: string;
+    email: string;
+    service: string;
+    message: string
+    createdAt: Date
+  }[] | []}

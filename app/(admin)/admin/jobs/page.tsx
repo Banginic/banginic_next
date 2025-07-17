@@ -6,6 +6,7 @@ import { useMyQuery } from "@/hooks/useQuery";
 import { Loading } from "@/components/exportComp";
 import Link from "next/link";
 import { JobTypes } from "@/models/types";
+import { FetchError, NoDataAvailable } from "@/admin-component/index";
 
 function Jobs() {
   const { setJobForm, showJobForm } = useContext(AppContext)!;
@@ -37,25 +38,10 @@ function Jobs() {
       <section className="  mt-4  shadow w-sm rounded mx-auto ">
         {isLoading && <Loading />}
 
-        {isError && (
-          <div className=" grid place-items-center text-center ">
-            <div>
-              <h2 className="heading3">Error Fetching Jobs</h2>
-              <p>Please try again later</p>
-              <button
-                className="bg-accent hover:opacity/60 mt-1 px-4 py-1 rounded cursor-pointer"
-                onClick={() => refetch()}
-              >
-                Retry now
-              </button>
-            </div>
-          </div>
-        )}
+        {isError && <FetchError message="Jobs" refetch={refetch} />}
         {!data ||
           (Array.isArray(data?.data) && data.data.length === 0 && (
-            <div className=" grid place-items-center text-center mt-32">
-              <h1>{data?.error}</h1> 
-            </div>
+            <NoDataAvailable message="Job" />
           ))}
         {data &&
           Array.isArray(data.data) &&
@@ -77,7 +63,7 @@ function Jobs() {
               </div>
               <div className="">
                 <p className="text-neutral-300">Latest date</p>
-                <p className="text-red-500 ">{'item.latestDate'}</p>
+                <p className="text-red-500 ">{"item.latestDate"}</p>
               </div>
             </Link>
           ))}

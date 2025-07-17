@@ -92,6 +92,7 @@ CREATE TABLE "users" (
 	"id" serial PRIMARY KEY NOT NULL,
 	"name" varchar(25) NOT NULL,
 	"email" varchar(30) NOT NULL,
+	"phone" varchar(30) NOT NULL,
 	"password" varchar(250) NOT NULL,
 	"is_admin" boolean DEFAULT false NOT NULL,
 	CONSTRAINT "users_email_unique" UNIQUE("email")

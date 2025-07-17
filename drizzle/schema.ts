@@ -14,6 +14,7 @@ export const userTable = pgTable("users", {
 id: serial('id').primaryKey(),
   name: varchar("name", { length: 25 }).notNull(),
   email: varchar("email", { length: 30 }).notNull().unique(),
+  phone: varchar("phone", { length: 30 }).notNull(),
   password: varchar("password", { length: 250 }).notNull(),
   isAdmin: boolean("is_admin").notNull().default(false),
   // messages: integer("message_id").references(() => messageTable.id, {

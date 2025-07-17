@@ -13,18 +13,18 @@ function ContactForm() {
   const appContext = useContext(AppContext);
   const [fetchState, setFetchState] = useState({ error: "", isLoading: false });
   const [client, setClient] = useState({
-    fullName: "",
-    emailAddress: "",
-    phoneNumber: "",
+    name: "",
+    email: "",
+    phone: "",
     service: "",
     message: "",
   });
 
   function clearForm() {
     setClient({
-      fullName: "",
-      emailAddress: "",
-      phoneNumber: "",
+      name: "",
+      email: "",
+      phone: "",
       service: "",
       message: "",
     });
@@ -35,7 +35,7 @@ function ContactForm() {
     setFetchState({ error: "", isLoading: true });
     try {
       const { data } = await axios.post(
-        "",
+        "/api/messages/create-message",
         client
       );
       console.log(data);
@@ -70,7 +70,7 @@ function ContactForm() {
         <p className="">Please send your message using the form below </p>
       </div>
       <div>
-        <label htmlFor="fullName" className="p-1">
+        <label htmlFor="name" className="p-1">
           Full name
         </label>
         <div className="border border-pink-50/50 mt-1 rounded-lg flex items-center px-4 gap-3 py-3 mb-4">
@@ -83,12 +83,12 @@ function ContactForm() {
           <input
             type="text"
             id="firsttName"
-            value={client.fullName}
+            value={client.name}
             autoComplete="name"
             required
             minLength={3}
             maxLength={30}
-            onChange={(e) => setClient({ ...client, fullName: e.target.value })}
+            onChange={(e) => setClient({ ...client, name: e.target.value })}
             placeholder="Mary Jones"
             className=" outline-none w-full bg-transparent border-none"
           />
@@ -108,10 +108,10 @@ function ContactForm() {
             required
             minLength={10}
             maxLength={30}
-            value={client.emailAddress}
+            value={client.email}
             className=" outline-none w-full bg-transparent border-none"
             onChange={(e) =>
-              setClient({ ...client, emailAddress: e.target.value })
+              setClient({ ...client, email: e.target.value })
             }
             placeholder="example@email.com"
           />
@@ -125,14 +125,14 @@ function ContactForm() {
           <Image src={call} width={25} alt=" call icon" aria-label="phone icon" />
           <input
             type="tel"
-            id="phoneNumber"
-            value={client.phoneNumber}
+            id="phone"
+            value={client.phone}
             className=" w-full outline-none  bg-transparent border-none"
             autoComplete="phone"
             minLength={9}
             maxLength={15}
             onChange={(e) =>
-              setClient({ ...client, phoneNumber: e.target.value })
+              setClient({ ...client, phone: e.target.value })
             }
             placeholder="+237 674 144 233"
           />

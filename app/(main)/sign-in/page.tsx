@@ -16,14 +16,14 @@ import { AppContext } from "@/context/expContext";
 import Image from "next/image";
 
 function Login() {
-  const appContext = useContext(AppContext);
+  const { router, setUser} = useContext(AppContext)!;
   const [formState, setFormState] = useState("Login");
   const [isLoading, setLoading] = useState(false);
   const [error, setError] = useState(" ");
   const [viewPassword, setViewPassword] = useState("password");
 
   const [formData, setFormData] = useState({
-    fullName: "",
+    name: "",
     email: "",
     phone: "",
     password: "",
@@ -31,7 +31,7 @@ function Login() {
   });
   function clearForm() {
     setFormData({
-      fullName: "",
+      name: "",
       email: "",
       phone: "",
       password: "",
@@ -84,8 +84,8 @@ function Login() {
       // SIGNIN
       if (formState === "Login") {
         const body = { email: formData.email, password: formData.password };
-        const { data } = await axios.post("", body);
-        const { success, message, user, token } = data;
+        const { data } = await axios.post("/api/auth/sign-in", body);
+        const { success, message, data:user } = data;
 
         if (!success) {
           setError(message);
@@ -94,23 +94,25 @@ function Login() {
         }
         toast.success(message);
         setLoading(false);
-        localStorage.setItem("token", token);
         localStorage.setItem("user", JSON.stringify(user));
-        appContext?.setUser(user);
+        setUser(user);
+         router.push('/')
       }
 
       // SIGNUP
-      const { data } = await axios.post("", formData);
-      const { success, message, user, token } = data;
+      const { data } = await axios.post("/api/auth/sign-up", formData);
+      console.log(data)
+      const { success, message, data:user} = data;
       if (!success) {
         setError(message);
         setLoading(false);
+        localStorage.setItem('user', JSON.stringify(user))
         return clearForm();
       }
       toast.success(message);
       setLoading(false);
-      localStorage.setItem("token", token);
-      appContext?.setUser(user);
+      setUser(user);
+      router.push('/')
     } catch (error: unknown) {
       if (error instanceof Error) {
         console.error(error.message);
@@ -118,11 +120,14 @@ function Login() {
         console.error("Unknown error", error);
       }
     }
+    finally{
+      setLoading(false)
+    }
   }
   return (
     <form
       onSubmit={handlerFormSubmit}
-      className="bg-black/40 backdrop:blur-md mb-8 p-8 rounded-lg 
+      className="bg-black/40 backdrop:blur-md  p-8 rounded-lg 
       w-sm  border-gray-300 dark:border-gray-800 mx-auto shadow-accent/20 shadow-lg"
     >
       <div className="text-start mb-5 ">
@@ -131,7 +136,7 @@ function Login() {
       </div>
       {formState !== "Login" && (
         <div className="mb-4">
-          <label htmlFor="fullName" className="block text-start mb-1.5">
+          <label htmlFor="name" className="block text-start mb-1.5">
             Full Name{" "}
           </label>
           <div className="border rounded-lg py-3 flex items-center px-4 gap-2 border-pink-50/50 ">
@@ -141,11 +146,11 @@ function Login() {
               placeholder="Full Name"
               required
               autoComplete="name"
-              value={formData.fullName}
+              value={formData.name}
               minLength={3}
               maxLength={20}
               onChange={(e) =>
-                setFormData({ ...formData, fullName: e.target.value })
+                setFormData({ ...formData, name: e.target.value })
               }
               className="w-full bg-transparent outline-none border-none text-sm"
             />

@@ -48,7 +48,7 @@ function ApplyJob(props: Props) {
   }
   const applyJob = async () => {
     const { data } = await axios.post(
-      import.meta.env.VITE_BASE_URL +
+     '' +
         `/api/v2/jobs/applications/create/${props.jobId}`,
       body
     );

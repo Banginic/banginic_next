@@ -27,7 +27,7 @@ function MainNavbar() {
 
         <Navlinks navlinks={mainNavlinks} />
 
-        <div className={`${user ? "hidden" : "flex"}  items-center gap-2 lg:gap-4`}>
+        <div className={` flex items-center gap-2 lg:gap-4`}>
           <Github />
           <Language />
           <Link href="/contact-us" className="hidden md:block">
