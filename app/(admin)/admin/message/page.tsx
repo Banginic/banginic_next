@@ -40,7 +40,7 @@ function Messages() {
             <Link
               href={`/admin/message/${item.id}`}
               key={item.id}
-              className="px-4 py-8 rounded border border-pink-100/20 shadow grid grid-cols-3 gap-1 mt-2 hover:bg-black/20 "
+              className="px-4 py-4 rounded border border-pink-100/20 shadow grid grid-cols-3 gap-1 mt-2 hover:bg-black/10 bg-black/20 "
             >
               <div className="">
                 <p className="text-neutral-300">Sender</p>

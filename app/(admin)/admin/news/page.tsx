@@ -91,7 +91,7 @@ function News() {
           data.data.length > 0 &&
           (!isPending || !isLoading) &&
           data.data.map((item) => (
-            <article key={item.id} className="px-4 py-8 rounded border">
+            <article key={item.id} className="px-4 py-8 rounded bg-black/20 hover:bg-black/10 border border-black/50">
               <div className="flex gap-4">
                 <p className="text-neutral-300">Subject:</p>
                 <p>{item.subject}</p>

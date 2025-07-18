@@ -2,7 +2,7 @@ import Spiner from "./Spiner";
 
 function Loading() {
   return (
-    <div className="mt-32">
+    <div className="mt-32 w-full">
       <div className="heading3  text-center flex justify-center gap-6 flex-col items-center">
         <div>
           <Spiner />

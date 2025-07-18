@@ -1,4 +1,6 @@
+import { LucideProps } from "lucide-react";
 import { StaticImageData } from "next/image";
+import { ForwardRefExoticComponent, RefAttributes } from "react";
 
 export interface NavlinkTypes{
     label: string;
@@ -163,3 +165,23 @@ export interface MessagesType extends ApiResponse{
 
 export type UserType = User  | null
 export type AdminType = Admin | null
+
+export interface EmployeeType extends ApiResponse {
+  data: {
+  id: number;
+  name: string;
+  bio: string;
+  position: string;
+  qualification: boolean
+  photo: string;
+  hiredDate: Date;
+  socialLinks: { [key: string]: string} [] | [];
+  phone: string
+  }[] | []
+}
+
+ export interface PlatformType {
+    name: string;
+    iconst: ForwardRefExoticComponent<Omit<LucideProps, "ref"> & RefAttributes<SVGSVGElement>> ;
+    label: string
+  }

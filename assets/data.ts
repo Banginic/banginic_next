@@ -1,3 +1,14 @@
+import {
+  Twitter,
+  Facebook,
+  Instagram,
+  Linkedin,
+  Youtube,
+  Github,
+  Globe,
+  Check,
+
+} from "lucide-react";
 
 import uiux_design from './photos/uiux design.png'
 import ai_logo from './photos/ai.png'
@@ -12,6 +23,7 @@ import google_logo from './photos/google.png'
 import discord from './photos/discord.png'
 
 import { home, contact_us, about_us, jobs, open_source, tutorial, services_photo, projects_photo } from './photos'
+
 
 
 
@@ -195,4 +207,13 @@ export const courses = [
       features: ["MERN Stack", "Database Design", "API Development", "Deployment"],
       image: "https://images.unsplash.com/photo-1551650975-87deedd944c3?w=400&h=250&fit=crop"
     }
+  ];
+    export const platforms = [
+    { name: 'twitter', icon: Twitter, label: 'Twitter', placeholder: 'https://twitter.com/yourusername' },
+    { name: 'facebook', icon: Facebook, label: 'Facebook', placeholder: 'https://facebook.com/yourusername' },
+    { name: 'instagram', icon: Instagram, label: 'Instagram', placeholder: 'https://instagram.com/yourusername' },
+    { name: 'linkedin', icon: Linkedin, label: 'LinkedIn', placeholder: 'https://linkedin.com/in/yourusername' },
+    { name: 'youtube', icon: Youtube, label: 'YouTube', placeholder: 'https://youtube.com/@yourusername' },
+    { name: 'github', icon: Github, label: 'GitHub', placeholder: 'https://github.com/yourusername' },
+    { name: 'website', icon: Globe, label: 'Website', placeholder: 'https://yourwebsite.com' },
   ];

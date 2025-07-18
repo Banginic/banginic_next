@@ -57,7 +57,7 @@ function Jobs() {
             <Link
               href={`/admin/jobs/${item.id}`}
               key={item.id}
-              className="px-4 py-4 sha rounded border border-pink-100/20 bg-white/20 backdrop:blur-md shadow grid grid-cols-3 gap-1 mt-2 hover:bg-white/10 "
+              className="px-4 py-4 shrounded border border-pink-100/20 bg-black/20 hover:bg-black/10 backdrop:blur-md shadow grid grid-cols-3 gap-1 mt-2 "
             >
               <div className="">
                 <p className="text-neutral-300">Title</p>

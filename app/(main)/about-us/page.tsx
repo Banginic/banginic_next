@@ -1,5 +1,5 @@
 
-// import { Employees } from "@/components/exportComp";
+import { Employees } from "@/components/exportComp";
 
 function AboutUs() {
   return (
@@ -45,7 +45,7 @@ function AboutUs() {
             </ul>
           </div>
         </div>
-        {/* <Employees /> */}
+        <Employees />
       </div>
     </section>
   );
