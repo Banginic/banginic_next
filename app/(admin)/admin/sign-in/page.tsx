@@ -5,7 +5,7 @@ import React, { ChangeEvent, FormEvent, useContext, useState } from "react";
 import { toast } from "react-toastify";
 
 function Login() {
-  const { setUser, router } = useContext(AppContext)!;
+  const { setAdminUser, router } = useContext(AppContext)!;
   const [state, setState] = useState("Login");
   const [error, setError] = useState("");
   const [isLoading, setLoading] = useState(false);
@@ -44,11 +44,11 @@ function Login() {
       //    login state
       if (state === "Login") {
         const data = await postForm("/api/auth/sign-in");
-        console.log(data);
+     
         if (data.success) {
           toast.success(data.message);
-          localStorage.setItem("user", JSON.stringify(data.data[0]));
-          setUser(data.data[0]);
+          localStorage.setItem("admin-user", JSON.stringify(data.data[0]));
+          setAdminUser(data.data[0]);
           setFormData({ name: "", email: "", phone: "", password: "" });
           return router.push("/admin");
         }
@@ -61,8 +61,8 @@ function Login() {
 
       if (data.success) {
         toast.success(data.message);
-        localStorage.setItem("user", JSON.stringify(data.data[0]));
-        setUser(data.data[0]);
+        localStorage.setItem("admin-user", JSON.stringify(data.data[0]));
+        setAdminUser(data.data[0]);
         setFormData({ name: "", email: "", phone: "", password: "" });
         toast.success(data.data[0].message);
         router.push("/admin");

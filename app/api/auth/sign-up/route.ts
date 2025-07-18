@@ -52,7 +52,7 @@ export async function POST(req: Request) {
   const token = await generateToken({ email });
 
   const cookieStore = await cookies();
-  cookieStore.set("token", token, {
+  cookieStore.set("admin-token", token, {
     httpOnly: true,
     path: "/",
     maxAge: 3 * 24 * 60 * 60 * 1000, // 3days

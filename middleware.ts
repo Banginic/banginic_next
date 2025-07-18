@@ -1,13 +1,13 @@
 import { NextRequest, NextResponse } from "next/server";
-import { verifyToken } from "./lib/jwt";
+import { verifyToken } from "@/lib/jwt";
 
 export async function middleware(req: NextRequest) {
-  const token = req.cookies.get("token")?.value || "none";
+  const token = req.cookies.get("admin-token")?.value || "none";
   if (!token) {
     return new Response("Unauthorized", { status: 401 });
   }
   const protectedRoutes = [
-    "/admin/admin",
+    "/admin",
     "/admin/admin/employees",
     "/admin/jobs",
     "/admin/news",
@@ -29,11 +29,14 @@ export async function middleware(req: NextRequest) {
   }
 
   if (!decoded &&  protectedRoutes) {
-      console.log('no token available.....')
     const signInUrl = new URL("/admin/sign-in", req.url);
     return NextResponse.redirect(signInUrl);
   }
   return NextResponse.next();
 }
+  export const config = {
+  matcher: ['/admin/:path*'], // apply middleware only to admin routes
+  }
+
 
 export default middleware;

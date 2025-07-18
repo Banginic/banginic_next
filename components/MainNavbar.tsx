@@ -13,12 +13,12 @@ import { useContext } from "react";
 import { AppContext } from "@/context/AppProvider";
 
 function MainNavbar() {
-  const { user, mainSidebar, setMainSidebar } = useContext(AppContext)!;
+  const { mainUser, mainSidebar, setMainSidebar } = useContext(AppContext)!;
   return (
     <header className="h-[10dvh] lg:h-[15dvh] flex lg:py-8 items-center relative ">
       <nav
         className={`flex items-center justify-between  w-full px-6  ${
-          user ? "lg:px-24" : "lg:justify-around"
+          mainUser ? "lg:px-24" : "lg:justify-around"
         } w-full`}
       >
         <Link href={"/"}>
@@ -35,7 +35,7 @@ function MainNavbar() {
               Get in touch
             </button>
           </Link>
-          <Hamburger isSidebarOpen={mainSidebar} setSidebar={setMainSidebar} />
+          <Hamburger currentUser={mainUser} isSidebarOpen={mainSidebar} setSidebar={setMainSidebar} />
         </div>
       </nav>
       <div>

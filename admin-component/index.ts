@@ -10,3 +10,5 @@ export { default as Dialogue } from './Dialogue'
 
 export { default as FetchError } from './FetchingError'
 export { default as NoDataAvailable } from './NoDataAvailable'
+export { default as AdminSidebar } from './AdminSidebar'
+

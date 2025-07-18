@@ -2,7 +2,7 @@
 export {default as Services }from "./services/Services"
 // export {default as RecentWorks } from "./recent-works/RecentWorks"
 export {default as Skills } from "./Skills"
-// export { default as Testimonials } from "./Testimonials"
+export { default as Testimonials } from "./Testimonials"
 export {default as ContactUs } from "./contact-us/ContactUs"
 // export { default as Blogs } from "./Blogs"
 export { default as AboutUs } from "./AboutUs"

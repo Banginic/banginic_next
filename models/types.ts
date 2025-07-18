@@ -131,3 +131,35 @@ export interface MessagesType extends ApiResponse{
     }[] | []
   }
 
+  export interface TestimonialsTypes extends ApiResponse {
+    data: {
+      id: number,
+      name: string;
+      photo: string;
+      message: string;
+      projectName: string;
+      isVarified: boolean;
+      email: string;
+      rating: number;
+      createdAt: Date
+    }[] | []
+  }
+
+  type User = {
+  id: number;
+  name: string;
+  email: string;
+  phone: string;
+  password?: string
+}
+  type Admin = {
+  id: number;
+  name: string;
+  email: string;
+  phone: string;
+  isAdmin: boolean
+  password?: string
+}
+
+export type UserType = User  | null
+export type AdminType = Admin | null

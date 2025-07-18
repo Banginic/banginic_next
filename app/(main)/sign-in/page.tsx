@@ -16,7 +16,7 @@ import { AppContext } from "@/context/expContext";
 import Image from "next/image";
 
 function Login() {
-  const { router, setUser} = useContext(AppContext)!;
+  const { router, setMainUser} = useContext(AppContext)!;
   const [formState, setFormState] = useState("Login");
   const [isLoading, setLoading] = useState(false);
   const [error, setError] = useState(" ");
@@ -94,24 +94,24 @@ function Login() {
         }
         toast.success(message);
         setLoading(false);
-        localStorage.setItem("user", JSON.stringify(user));
-        setUser(user);
+        localStorage.setItem("user", JSON.stringify(user[0]));
+         setMainUser(user)
          router.push('/')
       }
 
       // SIGNUP
       const { data } = await axios.post("/api/auth/sign-up", formData);
-      console.log(data)
       const { success, message, data:user} = data;
       if (!success) {
         setError(message);
         setLoading(false);
-        localStorage.setItem('user', JSON.stringify(user))
+        localStorage.setItem('main-user', JSON.stringify(user[0]))
+        setMainUser(user)
         return clearForm();
       }
       toast.success(message);
       setLoading(false);
-      setUser(user);
+      setMainUser(user);
       router.push('/')
     } catch (error: unknown) {
       if (error instanceof Error) {

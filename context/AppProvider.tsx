@@ -8,14 +8,8 @@ import React, {
 } from "react";
 import { WorkContext } from "./WorkProvider";
 import { useRouter } from "next/navigation";
+import { UserType, AdminType } from "@/models/types";
 
-type UserType = {
-  id: number;
-  name: string;
-  email: string;
-  password?: string;
-  isAdmin: boolean;
-};
 export interface AppContextType {
   setShowSidebar: React.Dispatch<React.SetStateAction<boolean>>;
   toggleSideBar(): void;
@@ -25,8 +19,10 @@ export interface AppContextType {
   // toggleTheme(): void;
   showNavbar: boolean;
   showSidebar: boolean;
-  user: UserType | null;
-  setUser: React.Dispatch<React.SetStateAction<UserType | null>>;
+  adminUser: AdminType;
+  setAdminUser: React.Dispatch<React.SetStateAction<AdminType>>;
+  mainUser: UserType;
+  setMainUser: React.Dispatch<React.SetStateAction<UserType>>;
   router: ReturnType<typeof useRouter>;
   lang: string;
   setLang: React.Dispatch<React.SetStateAction<string>>;
@@ -55,7 +51,9 @@ function AppProvider({ children }: PropsType) {
   const router = useRouter();
 
   const workContext = useContext(WorkContext);
-  const [user, setUser] = useState<UserType | null>(null);
+  const [adminUser, setAdminUser] = useState<AdminType>(null);
+  
+  const [mainUser, setMainUser] = useState<UserType >(null);
   const [showNavbar, setShowNavbar] = useState(false);
   const [showSidebar, setShowSidebar] = useState<boolean>(false);
 
@@ -72,10 +70,16 @@ function AppProvider({ children }: PropsType) {
   const [showJobForm, setJobForm] = useState(false);
   const [showMainJobForm, setMainJobForm] = useState(false);
 
-  function seedUser() {
-    const isUserAvailable = localStorage.getItem("user");
+  function seedAdminUser() {
+    const isUserAvailable = localStorage.getItem("admin-user");
     if (isUserAvailable) {
-      setUser(JSON.parse(isUserAvailable));
+      setAdminUser(JSON.parse(isUserAvailable));
+    }
+  }
+  function seedMainUser() {
+    const isUserAvailable = localStorage.getItem("main-main");
+    if (isUserAvailable) {
+      setMainUser(JSON.parse(isUserAvailable));
     }
   }
   function toggleSideBar() {
@@ -111,7 +115,8 @@ function AppProvider({ children }: PropsType) {
   }, [toggleNavbar]);
 
   useEffect(() => {
-    seedUser();
+    seedAdminUser();
+    seedMainUser();
 
     return () => {};
   }, []);
@@ -125,8 +130,8 @@ function AppProvider({ children }: PropsType) {
     setTheme,
     // toggleTheme,
     showNavbar,
-    user,
-    setUser,
+    adminUser,
+    setAdminUser,
     router,
     lang,
     setLang,
@@ -136,9 +141,14 @@ function AppProvider({ children }: PropsType) {
     setAdminSidebar,
     showMainNavbar,
     showAdminNavbar,
-    showNewsForm, setNewsForm,
-    showJobForm, setJobForm,
-    showMainJobForm, setMainJobForm
+    showNewsForm,
+    setNewsForm,
+    showJobForm,
+    setJobForm,
+    showMainJobForm,
+    setMainJobForm,
+    mainUser,
+    setMainUser,
   };
   return <AppContext.Provider value={values}>{children}</AppContext.Provider>;
 }
