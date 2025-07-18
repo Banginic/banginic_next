@@ -64,13 +64,13 @@ function MessageDetails({
             <NoDataAvailable message={data?.message || error} />
           ))}
 
-        {isError && <FetchError message="Message" refetch={refetch} />}
+        {isError || !data && <FetchError message="Message" refetch={refetch} />}
      
         {data &&
           Array.isArray(data.data) &&
           data.data.length > 0 &&
           (!isPending || !isLoading) && (
-            <article className="px-4 py-8 rounded border border-pink-100/20 shadow flex flex-col gap-2 mt-2 bg-black/20 ">
+            <article className="px-4 py-4 rounded border border-pink-100/20 shadow flex flex-col gap-2 mt-2 bg-black/20 ">
               <div className="">
                 <p className="text-neutral-300">Sender</p>
                 <p>{data.data[0].name}</p>

@@ -64,7 +64,7 @@ function TestimonialDetails({
             <NoDataAvailable message={data?.message || error} />
           ))}
 
-        {isError && <FetchError message="Testimoniny" refetch={refetch} />}
+        {isError || !data && <FetchError message="Testimoniny" refetch={refetch} />}
      
         {data &&
           Array.isArray(data.data) &&

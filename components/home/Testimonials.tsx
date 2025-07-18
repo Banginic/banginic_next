@@ -92,7 +92,7 @@ function Testimonials() {
             
           {Array.isArray(data?.data) && data.data.length > 0 && current && (
             <div>
-              <article className="bg-white backdrop:blur-sm shadow-lg  mx-auto rounded-lg  relative p-5 md:w-xs lg:w-sm min-h-110">
+              <article className="bg-black/30 backdrop:blur-sm shadow-accent/20 hover:shadow-accent trans shadow-lg  mx-auto rounded-lg  relative p-5 md:w-xs lg:w-sm min-h-110">
                 <div className="flex items-center justify-between p-3">
                   <Image
                     className="size-[64px] lg:size-[80px] bg-blue-300 rounded-full shadow"
@@ -103,18 +103,18 @@ function Testimonials() {
                   />
                   <StarRating rating={current?.rating} />
                 </div>
-                <p className="text-lg mt-4 p-4 text-center text-gray-600 italic ">
+                <p className="text-lg mt-4 p-4 text-center text-pink-100 talic ">
                   <span className="text-accent text-xl right-5">&ldquo;</span>
                   {current?.message}
                   <span className="text-accent text-xl right-5">&ldquo;</span>
                 </p>
-                <p className="heading4 mano text-black text-center mt-5">
+                <p className="heading4 mano text-pink-400 text-center mt-5">
                   {current?.projectName}
                 </p>
                 <div className="grid">
                   <button
                    onClick={() =>handleTestify()}
-                    className="mx-auto  px-6 rounded-lg py-2 mt-6  cursor-pointer hover:bg-pink-800 bg-pink-400 trans trans"
+                    className="mx-auto px-6 rounded-lg py-2 mt-6  cursor-pointer hover:border-pink-400  border border-pink-400/20 trans trans"
                   >
                     Testify Yours
                   </button>
@@ -131,7 +131,7 @@ function Testimonials() {
                   height="24px"
                   viewBox="0 -960 960 960"
                   width="24px"
-                  className="fill-gray-300 dark:fill-gray-800 dark:hover:fill-white size-full hover:fill-black trans"
+                  className="fill-pink-300 dark:hover:fill-white size-full hover:fill-black trans"
                 >
                   <path d="M400-80 0-480l400-400 71 71-329 329 329 329-71 71Z" />
                 </svg>
@@ -146,7 +146,7 @@ function Testimonials() {
                   height="24px"
                   viewBox="0 -960 960 960"
                   width="24px"
-                  className="fill-gray-300 rotate-180 dark:fill-gray-800 dark:hover:fill-white size-full hover:fill-black trans"
+                  className="fill-pink-300 rotate-180 dark:hover:fill-white size-full hover:fill-black trans"
                 >
                   <path d="M400-80 0-480l400-400 71 71-329 329 329 329-71 71Z" />
                 </svg>
