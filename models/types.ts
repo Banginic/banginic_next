@@ -117,4 +117,17 @@ export interface MessagesType extends ApiResponse{
       createdAt: Date
     }[] | []
   }
+  export interface JobApplicationType extends ApiResponse {
+    data: {
+      id: number;
+      email: string;
+      name:string;
+      phone: string;
+      job:string;
+      motivation: string;
+      resume: string;
+      jobId: number
+      createdAt: Date
+    }[] | []
+  }
 

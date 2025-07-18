@@ -9,7 +9,7 @@ import { JobTypes } from "@/models/types";
 import { FetchError, NoDataAvailable } from "@/admin-component/index";
 
 function Jobs() {
-  const { setJobForm, showJobForm } = useContext(AppContext)!;
+  const { setJobForm, showJobForm, router } = useContext(AppContext)!;
 
   async function getJobs(): Promise<JobTypes> {
     const response = await fetch("/api/jobs/list-jobs", {
@@ -34,8 +34,14 @@ function Jobs() {
         >
           Create Job
         </button>
+        <button
+          onClick={() => router.push('/admin/job-applications')}
+          className="border border-green-200 hover:scale-x-105 ml-4 bg-green-300 text-green-800  px-4 py-2 rounded cursor-pointer"
+        >
+          Job Applications
+        </button>
       </div>
-      <section className="  mt-4  shadow w-[90%] lg:w-xl rounded mx-auto ">
+      <section className="  mt-8  shadow w-[90%] lg:w-xl rounded mx-auto ">
         {isLoading && <Loading />}
 
         {isError && <FetchError message="Jobs" refetch={refetch} />}
@@ -51,7 +57,7 @@ function Jobs() {
             <Link
               href={`/admin/jobs/${item.id}`}
               key={item.id}
-              className="px-4 py-8 rounded border border-pink-100/20 bg-white/20 backdrop:blur-md shadow grid grid-cols-3 gap-1 mt-2 hover:bg-white/10 "
+              className="px-4 py-4 sha rounded border border-pink-100/20 bg-white/20 backdrop:blur-md shadow grid grid-cols-3 gap-1 mt-2 hover:bg-white/10 "
             >
               <div className="">
                 <p className="text-neutral-300">Title</p>
@@ -62,7 +68,7 @@ function Jobs() {
                 <p className=" ">{item.location}</p>
               </div>
               <div className="">
-                <p className="text-neutral-300">Latest date</p>
+                <p className="text-neutral-300">Latest Date</p>
                 <p className="text-red-500 ">{"item.latestDate"}</p>
               </div>
             </Link>

@@ -1,7 +1,6 @@
 'use client'
 import React, { useContext, useState } from "react";
 import type { ChangeEvent, FormEvent } from "react";
-import Logo from "./Logo";
 import { toast } from "react-toastify";
 import { useMutation } from "@tanstack/react-query";
 import axios, { AxiosError } from "axios";
@@ -50,7 +49,7 @@ function ApplyJob(props: Props) {
   const applyJob = async () => {
     const { data } = await axios.post(
      
-        `/api/upload?jobId=${props.jobId}`,
+        `/api/job-applications/create-application?jobId=${props.jobId}`,
       body
     );
     return data;
@@ -97,7 +96,7 @@ function ApplyJob(props: Props) {
   return (
     <form
       onSubmit={handleSubmit}
-      className="w-sm shadow-xl z-100 border-pink-200  text-white backdrop:blur-sm mt-8 rounded-lg text-xs"
+      className="w-sm shadow-xl z-100  border-pink-200  text-white backdrop:blur-sm mt-8 rounded-lg text-xs"
     >
   
       <div className="mb-2 mt-4">

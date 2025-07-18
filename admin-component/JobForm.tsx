@@ -59,8 +59,8 @@ function JobForm({
     setTimeout(() => clearForm, 10000);
   }
   return (
-    <form onSubmit={handleSubmit} className="w-sm mb-8">
-      <h1 className="text-xl lg:text-2xl font-semibold text-center mt-4">
+    <form onSubmit={handleSubmit} className="w-sm mb-8 text-sm">
+      <h1 className="text-xl lg:text-2xl font-semibold text-center ">
         Create Job
       </h1>
       <div className="mb-4 mt-8">
@@ -113,7 +113,7 @@ function JobForm({
         <textarea
           placeholder="News Body"
           required
-          rows={5}
+          rows={3}
           value={formData.description}
           onChange={(e) =>
             setFormData({ ...formData, description: e.target.value })

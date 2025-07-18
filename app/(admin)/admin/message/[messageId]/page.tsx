@@ -48,7 +48,7 @@ function MessageDetails({
   );
 
   return (
-    <div className="relative pb-12">
+    <div className="relative pb-12 mx-auto max-w-7xl">
       <div className="absolute top-8 left-2">
         <Back link="/admin/message" name="Back" />
       </div>

@@ -21,7 +21,7 @@ export async function DELETE(req: Request) {
 
   if (existInDB.length === 0) {
     return NextResponse.json(
-      { success: false, error: "No message with such ID", data: []},
+      { success: false, error: "No message with such ID" },
       { status: 404 }
     );
   }

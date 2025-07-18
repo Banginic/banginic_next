@@ -50,13 +50,14 @@ function JobDetails({ params }: { params: Promise<{ jobId: string }> }) {
 
       <section className="  mt-12  shadow w-sm rounded mx-auto ">
         {isLoading || (isPending && <Loading />)}
-
-        {isError ||
-          (deleteError && <FetchError message="Job" refetch={refetch} />)}
         {!data ||
           (Array.isArray(data?.data) && data.data.length === 0 && (
             <NoDataAvailable message={data?.message || error} />
           ))}
+          
+        {isError ||
+          (deleteError && <FetchError message="Job" refetch={refetch} />)}
+
         {data &&
           Array.isArray(data.data) &&
           data.data.length > 0 &&

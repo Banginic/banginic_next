@@ -12,7 +12,7 @@ function Dialogue({ isDialogOpen, closeDialog, children }: PropsTypes) {
   return (
     <div
       className={`${
-        isDialogOpen ? "fixed inset-0 bg-black/40 backdrop:blur-2xl" : "hidden"
+        isDialogOpen ? "fixed inset-0 bg-black/50 backdrop:blur-2xl" : "hidden"
       } grid place-items-center`}
     >
       <div className=" p-8 rounded border border-pink-400/30 shadow bg-black/90 text-white relative">

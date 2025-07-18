@@ -1,4 +1,4 @@
-'use client'
+"use client";
 import {
   whatsApp_logo,
   contactCard,
@@ -7,11 +7,14 @@ import {
   email,
 } from "@/assets/photos";
 import Image from "next/image";
+import { metaData } from "@/assets/data";
 
 function ContactCard() {
-  const phoneNumber = process.env.PHONE_NUMBER!;
-  const emailAddress = process.env.EMAIL_ADDRESS!;
-  const whatsAppNumber = process.env.WHATSAPP_NUMBER;
+  const {
+    phone: phoneNumber,
+    email: emailAddress,
+    whatsApp: whatsAppNumber,
+  } = metaData;
 
   const emailLink = `mailto:${emailAddress}?subject=${encodeURIComponent(
     contactCard.email.emailSubject
@@ -61,7 +64,7 @@ function ContactCard() {
       >
         <Image src={email} width={30} alt="./placeholder.png" />
         {emailAddress}
-        <p>baginic.007@gmail.com</p>
+        
       </a>
       {contactDetails.map((contact, index) => {
         return (
@@ -69,14 +72,16 @@ function ContactCard() {
             key={index}
             className="flex px-3 gap-4 hover:bg-gray-200/10 trans rounded w-[350px]"
           >
-            <Image src={contact.icon} width={30}  alt='./placeholder.png' />
+            <Image src={contact.icon} width={30} alt="./placeholder.png" />
             <div
               className="cursor-pointer lg:hover:underline w-full trans "
               title={`Click to copy ${contact.details}`}
               onClick={() => navigator.clipboard.writeText(contact.details)}
             >
               <p className={` sr-only paragraph1`}>{contact.type}</p>
-              <p className="text-[16px] text-pink-100 text-nowrap ">{contact.details}</p>
+              <p className="text-[16px] text-pink-100 text-nowrap ">
+                {contact.details}
+              </p>
             </div>
           </div>
         );

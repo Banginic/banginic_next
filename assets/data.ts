@@ -14,9 +14,13 @@ import discord from './photos/discord.png'
 import { home, contact_us, about_us, jobs, open_source, tutorial, services_photo, projects_photo } from './photos'
 
 
+
 export const metaData = {
   title:'Banginic',
   githup_url: 'https://github.com/BinaryDigitz',
+  email: 'banginic.007@gmail.com',
+  phone: '+237672640914',
+  whatsApp: '237672640914',
  description: 'Banginic is a creative company that focuses on creating beautiful and functional websites and applications.',
 }
 

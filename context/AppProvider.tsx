@@ -70,7 +70,7 @@ function AppProvider({ children }: PropsType) {
 
   const [showNewsForm, setNewsForm] = useState(false);
   const [showJobForm, setJobForm] = useState(false);
-  const [showMainJobForm, setMainJobForm] = useState(true);
+  const [showMainJobForm, setMainJobForm] = useState(false);
 
   function seedUser() {
     const isUserAvailable = localStorage.getItem("user");
