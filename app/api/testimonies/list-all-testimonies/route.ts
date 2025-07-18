@@ -15,4 +15,5 @@ export async function GET(){
     console.error("DB Fetch Error:", error);
     return NextResponse.json({ message: "Server error", error, success: false }, { status: 500 });
   }
+  
 }

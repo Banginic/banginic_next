@@ -133,12 +133,12 @@ export interface MessagesType extends ApiResponse{
 
   export interface TestimonialsTypes extends ApiResponse {
     data: {
-      id: number,
+      id?: number,
       name: string;
-      photo: string;
+      photo: string | null;
       message: string;
       projectName: string;
-      isVarified: boolean;
+      isVarified?: boolean;
       email: string;
       rating: number;
       createdAt: Date
