@@ -8,12 +8,13 @@ export async function middleware(req: NextRequest) {
   }
   const protectedRoutes = [
     "/admin",
-    "/admin/admin/employees",
+    "/admin/employees",
     "/admin/jobs",
     "/admin/news",
     "/admin/newsletters",
     "/admin/projects",
     "/admin/testimonials",
+    "/admin/message",
   ].includes(req.nextUrl.pathname);
 
   if (protectedRoutes && token === "none") {
@@ -27,8 +28,11 @@ export async function middleware(req: NextRequest) {
     const signInUrl = new URL("/admin/sign-in", req.url);
     return NextResponse.redirect(signInUrl);
   }
-
   if (!decoded &&  protectedRoutes) {
+    const signInUrl = new URL("/admin/sign-in", req.url);
+    return NextResponse.redirect(signInUrl);
+  }
+  if (!decoded?.isAdmin &&  protectedRoutes) {
     const signInUrl = new URL("/admin/sign-in", req.url);
     return NextResponse.redirect(signInUrl);
   }

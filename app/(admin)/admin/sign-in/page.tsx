@@ -1,6 +1,5 @@
 "use client";
 import { AppContext } from "@/context/AppProvider";
-import { div } from "framer-motion/client";
 import React, { ChangeEvent, FormEvent, useContext, useState } from "react";
 import { toast } from "react-toastify";
 
@@ -50,7 +49,9 @@ function Login() {
           localStorage.setItem("admin-user", JSON.stringify(data.data[0]));
           setAdminUser(data.data[0]);
           setFormData({ name: "", email: "", phone: "", password: "" });
-          return router.push("/admin");
+            toast.success(data.message);
+           router.push("/admin");
+           return
         }
         setError(data.message);
         return;
@@ -64,7 +65,7 @@ function Login() {
         localStorage.setItem("admin-user", JSON.stringify(data.data[0]));
         setAdminUser(data.data[0]);
         setFormData({ name: "", email: "", phone: "", password: "" });
-        toast.success(data.data[0].message);
+        toast.success(data.message);
         router.push("/admin");
         return
       }
@@ -167,7 +168,7 @@ function Login() {
             state
           )}
         </button>
-        <div>
+        <div className="hidden">
           {state === "Login" ? (
             <p className="flex gap-4 mt-2 justify-center">
               <span>Don't have an account?</span>

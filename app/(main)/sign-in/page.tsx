@@ -84,8 +84,9 @@ function Login() {
       // SIGNIN
       if (formState === "Login") {
         const body = { email: formData.email, password: formData.password };
-        const { data } = await axios.post("/api/auth/sign-in", body);
+        const { data } = await axios.post("/api/auth/main-auth/sign-in", body);
         const { success, message, data:user } = data;
+
 
         if (!success) {
           setError(message);
@@ -94,13 +95,13 @@ function Login() {
         }
         toast.success(message);
         setLoading(false);
-        localStorage.setItem("user", JSON.stringify(user[0]));
+        localStorage.setItem("main-user", JSON.stringify(user[0]));
          setMainUser(user)
          router.push('/')
       }
 
       // SIGNUP
-      const { data } = await axios.post("/api/auth/sign-up", formData);
+      const { data } = await axios.post("/api/auth/main-auth/sign-up", formData);
       const { success, message, data:user} = data;
       if (!success) {
         setError(message);
@@ -128,7 +129,7 @@ function Login() {
     <form
       onSubmit={handlerFormSubmit}
       className="bg-black/40 backdrop:blur-md  p-8 rounded-lg 
-      w-sm  border-gray-300 dark:border-gray-800 mx-auto shadow-accent/20 shadow-lg"
+      w-sm mb-8 border-gray-300 dark:border-gray-800 mx-auto shadow-accent/20 shadow-lg"
     >
       <div className="text-start mb-5 ">
         <Logo logoSize={40} textSize="heading4" />
@@ -269,20 +270,7 @@ function Login() {
         <hr className="border-0.5 border-gray-400 w-1/2 " />
       </div>
       {/* OAUTH */}
-      <button
-        type="button"
-        className="text-sm flex items-center gap-2 justify-center font-medium w-full cursor-pointer rounded-lg py-3 border border-pink-50/30 mb-4 hover:border-black/10 hover:bg-black/10  "
-      >
-        <Image src={google_logo} alt=" google logo" width={20} />
-        Continue with Google
-      </button>
-      <button
-        type="button"
-        className="text-sm flex items-center gap-2 justify-center font-medium w-full cursor-pointer rounded-lg py-3 border border-pink-50/30 mb-4 hover:border-black/10  hover:bg-black/10  "
-      >
-        <Image src={apple_logo} alt=" google logo" width={20} />
-        Continue with Apple
-      </button>
+ 
 
       {/* TOGGLE FORM STATE */}
       {formState === "Login" ? (

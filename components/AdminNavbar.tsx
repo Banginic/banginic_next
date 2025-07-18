@@ -2,7 +2,7 @@
 import React, { useContext } from "react";
 import Link from "next/link";
 import { AppContext } from "@/context/AppProvider";
-import { Hamburger, Logo, Navlinks,  } from "./exportComp";
+import { Hamburger, Logo, Navlinks } from "./exportComp";
 import { adminNavlinks, adminSidelinks } from "@/assets/data";
 import { AdminUser, AdminSidebar } from "@/admin-component/index";
 
@@ -14,7 +14,9 @@ function AdminNavbar() {
         <Link href={"/admin"}>
           <Logo textSize="heading4" logoSize={45} />
         </Link>
-        <Navlinks navlinks={adminNavlinks} />
+        <div className={`${!adminUser && 'hidden'}`}>
+          <Navlinks navlinks={adminNavlinks} />
+        </div>
         <div
           className={`${
             !adminUser ? "hidden" : "flex"

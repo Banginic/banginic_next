@@ -1,4 +1,4 @@
-import { userTable } from "@/drizzle/schema";
+import { mainUserTable } from "@/drizzle/schema";
 import { db } from "@/drizzle/index";
 import { NextResponse } from "next/server";
 import { and, eq } from "drizzle-orm";
@@ -20,8 +20,8 @@ export async function POST(req: Request) {
   }
   const existInDB = await db
     .select()
-    .from(userTable)
-    .where(eq(userTable.email, email))
+    .from(mainUserTable)
+    .where(eq(mainUserTable.email, email))
     .limit(1);
 
   if (existInDB.length === 1) {
@@ -37,25 +37,25 @@ export async function POST(req: Request) {
       { status: 500 }
     );
   }
-  const isAdmin = email === process.env.ADMIN_EMAIL;
+
  await db
-    .insert(userTable)
-    .values({ name, email, phone, password: newPassword, isAdmin });
+    .insert(mainUserTable)
+    .values({ name, email, phone, password: newPassword });
 
   const user = await db.select()
-  .from(userTable)
+  .from(mainUserTable)
   .where(and
-    ( eq(userTable.email, email), eq(userTable.name, name))
+    ( eq(mainUserTable.email, email), eq(mainUserTable.name, name))
   )
   .limit(1)
  
-  const token = await generateToken({ email, isAdmin: user[0].isAdmin });
+  const token = await generateToken({ email });
 
   const cookieStore = await cookies();
-  cookieStore.set("admin-token", token, {
+  cookieStore.set("main-token", token, {
     httpOnly: true,
     path: "/",
-    maxAge: 3 * 24 * 60 * 60 * 1000, // 3days
+    maxAge: 1 * 24 * 60 * 60 * 1000, // 3days
     sameSite: "lax",
   });
   return NextResponse.json(

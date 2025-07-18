@@ -77,7 +77,7 @@ function AppProvider({ children }: PropsType) {
     }
   }
   function seedMainUser() {
-    const isUserAvailable = localStorage.getItem("main-main");
+    const isUserAvailable = localStorage.getItem("main-user");
     if (isUserAvailable) {
       setMainUser(JSON.parse(isUserAvailable));
     }

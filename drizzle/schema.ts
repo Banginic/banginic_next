@@ -17,9 +17,13 @@ id: serial('id').primaryKey(),
   phone: varchar("phone", { length: 30 }).notNull(),
   password: varchar("password", { length: 250 }).notNull(),
   isAdmin: boolean("is_admin").notNull().default(false),
-  // messages: integer("message_id").references(() => messageTable.id, {
-  //   onDelete: "cascade",
-  // }).default(0)
+});
+export const mainUserTable = pgTable("main_users", {
+id: serial('id').primaryKey(),
+  name: varchar("name", { length: 25 }).notNull(),
+  email: varchar("email", { length: 30 }).notNull().unique(),
+  phone: varchar("phone", { length: 30 }).notNull(),
+  password: varchar("password", { length: 250 }).notNull(),
 });
 
 export const messageTable = pgTable("messages", {

@@ -31,9 +31,9 @@ function User({
 
   return (
     <section className="text-center p-2 rounded  ">
-      {appContext?.user ? (
+      {appContext?.mainUser ? (
         <div className="flex flex-col items-center gap-2  py-2 ">
-          <div className="md:hidden">
+          <div className="md:hidden flex flex-col justify-center items-center">
             <Image
               title="Visit profile"
               alt="./placeholder.png"
@@ -41,17 +41,18 @@ function User({
               src={person}
               className="size-12 rounded-full cursor-pointer dark:bg-900"
             />
-            <p className="flex gap-2 text-accent">
+            <p className="flex gap-2 text-accent ">
               <span>Hello!</span>
-              <span>Admin</span>
+              <span>{appContext?.mainUser.name}</span>
             </p>
           </div>
           <button
             title="Log out"
             onClick={async () => {
-              window.localStorage.removeItem("user");
+              window.localStorage.removeItem("main-user");
               await logOut();
-              appContext?.router.push(signInRoute);
+              appContext?.setMainUser(null)
+              appContext?.router.push('/');
             }}
             className="px-6 py-2 rounded b text-pink-400 hover:scale-x-105 trans cursor-pointer border"
           >
