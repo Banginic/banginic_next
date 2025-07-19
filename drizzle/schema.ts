@@ -112,6 +112,6 @@ export const employeeTable = pgTable("employees", {
   bio: varchar("bio", { length: 500 }).notNull(),
   position: varchar("position", { length: 100 }).notNull(),
   qualification: varchar("qualification", { length: 100 }).notNull(),
-  socialLinks: jsonb("social_links").notNull().default("{}"),
+  socialLinks: varchar("social_links").notNull().default(''),
   hiredDate: timestamp("hiredDate_at").notNull().defaultNow(),
 });

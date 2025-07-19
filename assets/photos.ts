@@ -34,6 +34,7 @@ import logo from './photos/logo.png'
 import hero_image from './photos/dot_image.png'
 import placeholdeImage from './photos/placeholderImage.jpg'
 import motion_lines from './photos/lines.png'
+import green_whatsApp from './photos/green_whatsApp.png'
 
 
 
@@ -47,7 +48,7 @@ export const contactCard = {
     whatsAppBody:'Hello, Please can you tell me more about your services?'
   }
 }
-export { placeholdeImage, close_menu, motion_lines, hero_image, logo, open_menu, vision, call, person, star, moon, sun, location, email, lock, whatsApp_logo, githup,google_logo, apple_logo, download, happyCustomer, manyHands,instagram, facebook, linkedin, twitter }
+export { placeholdeImage, green_whatsApp, close_menu, motion_lines, hero_image, logo, open_menu, vision, call, person, star, moon, sun, location, email, lock, whatsApp_logo, githup,google_logo, apple_logo, download, happyCustomer, manyHands,instagram, facebook, linkedin, twitter }
 
 export {
     home, contact_us, about_us, jobs, open_source,  tutorial, services_photo, projects_photo, uk_flag, france_flag

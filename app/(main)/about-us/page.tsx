@@ -4,7 +4,7 @@ import { Employees } from "@/components/exportComp";
 function AboutUs() {
   return (
     <section
-      className=" px-5 2xl:px-20 min-h- pb-[3rem] "
+      className=" px-5 max-w-7xl mx-auto min-h- pb-[3rem] "
     >
       <h1 className="text-4xl text-center md:text-5xl font-bold bg-gradient-to-r from-accent  via-pink-400 to-blue-400 bg-clip-text text-transparent montserrat">
         ABOUT US

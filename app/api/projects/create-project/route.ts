@@ -2,7 +2,7 @@ import cloudinary from "@/config/cloudinary";
 import { NextRequest, NextResponse } from "next/server";
 import multer from "multer";
 import { eq, and } from "drizzle-orm";
-import { employeeTable } from "@/drizzle/schema";
+import { projectTable } from "@/drizzle/schema";
 import { Readable } from "stream";
 import { db } from "@/drizzle/index";
 
@@ -34,49 +34,47 @@ const multerUpload = (req: any): Promise<Express.Multer.File> =>
 export async function POST(req: NextRequest) {
   try{
       const formData = await req.formData();
-  const photo = formData.get("photo") as File;
+  const resume = formData.get("photo") as File;
   const name = formData.get("name") as string;
-  const bio = formData.get("bio") as string;
-  const position = formData.get("position") as string;
-  const qualification = formData.get("qualification") as string;
-  const phone = formData.get("phone") as string;
-  const socialLinks = formData.get("socialLinks") as string;
+  const email = formData.get("email") as string;
+  const projectName = formData.get("projectName") as string;
+  const rating = formData.get("rating") as string;
+  const message = formData.get("message") as string;
 
   //Check for other input data
-  if (!photo || !name || !bio || !position || !qualification || !phone || !socialLinks) {
+  if (!resume || !name || !email || !rating || !message || !projectName) {
     return NextResponse.json(
       { success: false, message: "All fields are required" },
       { status: 400 }
     );
   }
-  console.log(socialLinks);
+  console.log("Passed");
 
   // Check if user has already applied
   const alreadyApplied = await db
     .select()
-    .from(employeeTable)
+    .from(projectTable)
     .where(
       and(
-        eq(employeeTable.name, name),
-        eq(employeeTable.position, position),
-        eq(employeeTable.qualification, qualification),
+        eq(projectTable.name, name),
+        eq(projectTable.projectName, projectName)
       )
     )
     .limit(1);
   if (alreadyApplied.length === 1) {
     return NextResponse.json(
-      { success: false, message: "Already Hired" },
+      { success: false, message: "Already Added" },
       { status: 400 }
     );
   }
 
-  const buffer = Buffer.from(await photo.arrayBuffer());
+  const buffer = Buffer.from(await resume.arrayBuffer());
 
   // Upload to clouadinary using stream
   const streamUpload = () =>
     new Promise((resolve, reject) => {
       const stream = cloudinary.uploader.upload_stream(
-        { folder: "Employees" },
+        { folder: "Testimony" },
         (error, result) => {
           if (result) resolve(result);
           else reject(error);
@@ -94,23 +92,23 @@ export async function POST(req: NextRequest) {
     );
   }
 
-  const employee = await db.insert(employeeTable).values({
+  const project = await db.insert(projectTable).values({
     name,
-    bio,
-    phone,
-    position,
-    qualification,
-    socialLinks,
+    email,
+    projectName,
+    message,
+    rating: Number(rating),
+    isVerified: true,
     photo: result.secure_url,
   });
-  if (!employee) {
+  if (!project) {
     return NextResponse.json(
-      { success: false, message: "Error Uploading employee" },
+      { success: false, message: "Error Uploading data" },
       { status: 500 }
     );
   }
   return NextResponse.json(
-    { success: true, message: "Employed successfully", data: employee },
+    { success: true, message: "Project created successfully", data: project },
     { status: 201 }
   );
   }

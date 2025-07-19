@@ -93,13 +93,14 @@ function Employees() {
         </div>
         <div className="flex justify-center mb-2">
           {employee?.socialLinks && (
-            <SocialLinks links={employee?.socialLinks} />
+            <SocialLinks links={JSON.parse(employee?.socialLinks)} />
           )}
         </div>
       </article>
       <div className="flex gap-1 absolute bottom-0 lg:-bottom-12 left-1/2 -translate-x-1/2">
         {data?.data.map((_: any, index: SetStateAction<number>) => (
           <span
+            key={typeof(index) === 'number' ? index : Math.random()}
             onClick={() => setCurrentIndex(index)}
             className={`size-3 ${
               currentIndex === index ? "w-6" : ""
