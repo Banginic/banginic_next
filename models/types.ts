@@ -193,6 +193,21 @@ export interface ProjectType extends ApiResponse {
   createdAt: Date
   }[] | []
 }
+export interface ProjectObjectType  
+  {
+  id: number;
+  projectName: string;
+  description: string;
+  url: string;
+  category: string
+  designer: string
+  approach: string
+  story: string
+  photos: string[];
+  createdAt: Date
+  
+}
+
 
  export interface PlatformType {
     name: string;

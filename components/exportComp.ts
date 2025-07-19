@@ -1,25 +1,8 @@
 // // UI
 export {default as Footer} from "./Footer"
-// export {default as Home} from "./home/Home"
-// export {default as Navbar} from "./navbar/Navbar"
-// export {default as Counter} from "./home/Counter";
+
 export {default as Hero} from "./home/Hero";
-// export {default as ColorLines} from "./home/ColorLines"
-// export {default as NotFound} from "../pages/NotFound"
-// export {default as Works} from "../pages/works/workDisplay/Projects"
-// WORKS tabs
-// export {default as AllWorks} from "../pages/works/workRender/AllWorks"
-// export {default as WorkDetails} from "../pages/works/WorkDetails"
 
-// Images
-// export {default as imageExp} from "../assets/images/imageEpx"
-
-//skeleton
-// export { default as RecentProjectSkeleton } from './skeletons/RecentProjectSkeleton' 
-
-
-// HOOKES
-// export { default as useTitle } from '../hooks/useTitle'
 
 // COMPONENT
 export { default as Back} from "./Back"

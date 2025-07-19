@@ -1,4 +1,4 @@
-import { Hero, AboutUs, Counter, Services, Partners, Skills, ContactUs, Testimonials } from "@/components/home/exportHomeComp";
+import { Hero, AboutUs, Counter, Services, Partners, Skills, ContactUs, Testimonials, RecentWorks } from "@/components/home/exportHomeComp";
 import { WhatsAppButton} from '@/components/exportComp'
 
 function MainPage() {
@@ -10,6 +10,7 @@ function MainPage() {
         <AboutUs />
         <Counter />
         <Services />
+        <RecentWorks />
         <Partners />
         <Skills />
         <Testimonials />
