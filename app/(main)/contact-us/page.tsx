@@ -6,7 +6,7 @@ function Contact() {
     <div
       className="min-h-screen max-w-7xl mx-auto"
     >
-      <h1 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-accent via-pink-400 to-blue-400 bg-clip-text text-transparent montserrat text-center">
+      <h1 className="text-2xl md:text-2xl font-bold bg-gradient-to-r from-accent via-pink-400 to-blue-400 bg-clip-text text-transparent montserrat text-center">
         CONTACT US
       </h1>
       <p className="text-lg text-pink-50/60 text-center">

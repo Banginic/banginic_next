@@ -15,7 +15,7 @@ import { AppContext } from "@/context/AppProvider";
 function MainNavbar() {
   const { mainUser, mainSidebar, setMainSidebar } = useContext(AppContext)!;
   return (
-    <header className="h-[10dvh] lg:h-[15dvh] flex lg:py-8 items-center relative ">
+    <header className="h-[10dvh] lg:h-[15dvh] flex lg:py-8 items-center relative max-w-[97rem] mx-auto ">
       <nav
         className={`flex items-center justify-between  w-full px-6  ${
           mainUser ? "lg:px-24" : "lg:justify-around"

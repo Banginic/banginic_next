@@ -6,7 +6,7 @@ function AboutUs() {
     <section
       className=" px-5 max-w-7xl mx-auto min-h- pb-[3rem] "
     >
-      <h1 className="text-4xl text-center md:text-5xl font-bold bg-gradient-to-r from-accent  via-pink-400 to-blue-400 bg-clip-text text-transparent montserrat">
+      <h1 className="text-xl text-center md:text-2xl font-bold bg-gradient-to-r from-accent  via-pink-400 to-blue-400 bg-clip-text text-transparent montserrat">
         ABOUT US
       </h1>
       <p className="text-center text-[18px] mt-1 text-pink-50/80 ">
